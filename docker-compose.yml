@@ -1,0 +1,15 @@
+services:
+  jekyll:
+    #image: ruby:3
+    build: .
+    user: 1000:1000
+    working_dir: /opt/app
+    ports:
+    - "127.0.0.1:3001:3001"
+    volumes:
+    - .:/opt/app
+    - .bundler:/opt/bundler
+    environment:
+    - BUNDLE_PATH=/opt/bundler
+    env_file: .dockerenv
+    command: bash -c "bundle install && npm install && bundle exec jekyll contentful && npx gulp"

@@ -9,3 +9,5 @@ source/assets
 .vscode/
 source/_data/contentful
 .vercel
+.dockerenv
+.bundler/
