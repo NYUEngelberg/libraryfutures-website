@@ -153,7 +153,7 @@
           <div class="card__avatar">
             <img
               src="{{card.photo.url}}"
-              alt="{{card.display_name}} Image"
+              alt="{{card.display_name | escape}} Image"
             />
           </div>
           <div class="bar" style="background-image: url('/images/bar-p.svg')"></div>
