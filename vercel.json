@@ -4,24 +4,24 @@
     "installCommand": "bundle install && npm install",
     "redirects": [
         {
-            "source": "/staff/:path*",
-            "destination": "/people/:path*"
+            "source": "/staff/:path+",
+            "destination": "/people/:path+"
         },
         {
-            "source": "/interns/:path*",
-            "destination": "/people/:path*"
+            "source": "/interns/:path+",
+            "destination": "/people/:path+"
         },
         {
-            "source": "/fellows/:path*",
-            "destination": "/people/:path*"
+            "source": "/fellows/:path+",
+            "destination": "/people/:path+"
         },
         {
-            "source": "/engelberg/:path*",
-            "destination": "/people/:path*"
+            "source": "/engelberg/:path+",
+            "destination": "/people/:path+"
         },
         {
-            "source": "/student-fellows/:path*",
-            "destination": "/people/:path*"
+            "source": "/student-fellows/:path+",
+            "destination": "/people/:path+"
         },
         {
             "source": "/blog/:path+",
