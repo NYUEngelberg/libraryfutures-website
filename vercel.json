@@ -22,6 +22,10 @@
         {
             "source": "/student-fellows/:path*",
             "destination": "/people/:path*"
+        },
+        {
+            "source": "/blog/:path*",
+            "destination": "/post/:path*"
         }
     ]
 }
