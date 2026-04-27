@@ -38,6 +38,7 @@
     %}
 {% endif %}
 
+{% comment %}
 {% assign research_network_cards = people | where: 'type', 'Research Network' | sort_natural: "last_name" %}
 {% if research_network_cards and research_network_cards.size != 0 %}
     {% include components/generic-card-layout.html
@@ -46,6 +47,7 @@
       cards_type="people_cards"
     %}
 {% endif %}
+{% endcomment %}
 
 
 {% assign intern_cards = people | where: 'type', 'Intern' | sort_natural: "last_name" %}
