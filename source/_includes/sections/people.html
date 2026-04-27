@@ -70,10 +70,11 @@
 
 {% assign community_alumni_cards = people | where: 'type', 'Community Alumni' | sort_natural: "last_name" %}
 {% if community_alumni_cards and community_alumni_cards.size != 0 %}
-    {% include components/generic-card-layout.html
+    {% include components/minimal-card-layout.html
       cards=community_alumni_cards
       cards_heading="Community Alumni"
       cards_type="people_cards"
+      cards_alumni=true
     %}
 {% endif %}
 
