@@ -26,6 +26,18 @@
         {
             "source": "/blog/:path+",
             "destination": "/post/:path+"
+        },
+        {
+            "source": "/know-your-rights",
+            "destination": "/publications/know-your-rights"
+        },
+        {
+            "source": "/post/neo-censorship-in-u-s-libraries",
+            "destination": "/post/new-research-report-neo-censorship-in-u-s-libraries"
+        },
+        {
+            "source": "/post/improving-digital-access-to-local-news-through-library-newsroom-collaboration",
+            "destination": "/post/first-insights-report-albany-public-library-news-access-pilot-project"
         }
     ]
 }
