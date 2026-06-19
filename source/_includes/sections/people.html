@@ -57,7 +57,7 @@
 {% endif %}
 
 
-{% assign advisory_board_cards = people | where: 'type', 'Intern' | sort_natural: "last_name" %}
+{% assign advisory_board_cards = people | where: 'type', 'Advisory Board' | sort_natural: "last_name" %}
 {% if advisory_board_cards and advisory_board_cards.size != 0 %}
     {% include components/generic-card-layout.html
       cards=advisory_board_cards
