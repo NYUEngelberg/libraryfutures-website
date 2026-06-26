@@ -1,0 +1,66 @@
+---
+layout: tailwind
+title: Library Futures Blog
+description: All the latest research, education, advocacy, and news from Library Futures staff, fellows, interns and friends. Explore our current (and past) work on vendor accountability, library ebook licensing costs, copyright in the public interest, and more.
+---
+
+{% assign news = site.data.contentful.lf.news | sort: "publication_date" | reverse %}
+
+{% assign all_authors = "" | split: "" %} 
+{% assign all_publications = "" | split: "" %} 
+{% assign all_types = "" | split: "" %} 
+
+{% for item in news %} 
+  {% for author in item.authors %} 
+    {% assign all_authors = all_authors | push: author %} 
+  {% endfor %} 
+  {% assign all_publications = all_publications | push: item.publication %} 
+  {% assign all_types = all_types | push: item.publication_type %} 
+{% endfor %} 
+
+{% assign all_authors = all_authors| compact | sort: "last_name" | map: "display_name" | uniq %}
+{% assign all_publications = all_publications | uniq | compact | sort %} 
+{% assign all_types = all_types | uniq | compact | sort %}
+
+<!-- LAYOUT 9: Lists  -->
+<main id="main" class="bg-white">
+  <section class="px-24 py-22">
+    <div class="column large-offset-2">
+      <h1 class="font-sans text-2xl md:text-6xl font-black capitalize text-[#1a1a1a]" >{{ page.title }}</h1>
+
+      {% include components/mobile-list-results.html class_name="engelberg-center-news-filter" %}
+
+      <div class="bar"></div>
+
+      <span class="search-title">Filters</span>
+      <button id="clear-filters" class="clear-filters">Clear all</button>
+
+      <div class="dropdown-container">
+        <div class="dropdown-component">
+          {% include components/dropdown.html content=all_authors component_id="news-item-center-author"
+          component_name="news-item-center-author" component_default="All Authors"
+          component_label_class="visually-hidden" %}
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="column list-container px-24">
+    {% comment %}
+    {% include components/list-results.html %}
+    <div class="border-b border-[#e0e0e0] pb-6 md:pb-8 hover:bg-[#fafafa] transition-colors -mx-4 md:-mx-0 px-4 md:px-6 py-4 md:py-5 rounded-lg">
+      <h2>Posts</h2>
+      <button
+        id="date-sort"
+        type="button"
+        class="button__date-sort js-sort sort {{ class_names }}"
+        data-sort="timestamp"
+      >
+        Date
+      </button>
+    </div>
+    {% endcomment %}
+    <div class="list">
+      {% for news_item in news %} {% include components/news-list-item.html item=news_item %} {% endfor %}
+    </div>
+  </div>
+</main>

@@ -1,0 +1,123 @@
+---
+---
+@import "tailwindcss";
+@plugin "daisyui";
+@plugin "@tailwindcss/typography";
+/*
+@plugin "daisyui/theme" {
+  name: "mytheme";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-base-100: oklch(98% 0.02 240);
+  --color-base-200: oklch(95% 0.03 240);
+  --color-base-300: oklch(92% 0.04 240);
+  --color-base-content: oklch(20% 0.05 240);
+  --color-primary: oklch(55% 0.3 240);
+  --color-primary-content: oklch(98% 0.01 240);
+  --color-secondary: oklch(70% 0.25 200);
+  --color-secondary-content: oklch(98% 0.01 200);
+  --color-accent: oklch(65% 0.25 160);
+  --color-accent-content: oklch(98% 0.01 160);
+  --color-neutral: oklch(50% 0.05 240);
+  --color-neutral-content: oklch(98% 0.01 240);
+  --color-info: oklch(70% 0.2 220);
+  --color-info-content: oklch(98% 0.01 220);
+  --color-success: oklch(65% 0.25 140);
+  --color-success-content: oklch(98% 0.01 140);
+  --color-warning: oklch(80% 0.25 80);
+  --color-warning-content: oklch(20% 0.05 80);
+  --color-error: oklch(65% 0.3 30);
+  --color-error-content: oklch(98% 0.01 30);
+
+  --radius-selector: 1rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  --border: 1px;
+
+}
+*/
+
+/*
+a {
+    color: #7d1b6e;
+}
+*/
+
+nav a, nav summary{
+  @apply font-sans;
+  @apply uppercase;
+  @apply text-[11px];
+  @apply font-bold;
+  @apply tracking-widest;
+  @apply text-[#1a1a1a];
+  @apply py-[18px];
+  @apply px-3.5;
+  @apply cursor-pointer;
+  @apply whitespace-nowrap;
+  @apply hover:text-[#7d1b6e];
+  @apply transition-colors;
+  @apply bg-transparent;
+  @apply border-none;
+}
+
+nav details > ul {
+    z-index: 9999;
+}
+
+@utility btn-outline {
+  @apply tracking-wider;
+  @apply border-[1.5px];
+  @apply border-[#1a1a1a];
+  @apply border-solid;
+  @apply bg-white;
+  @apply text-[#1a1a1a];
+  @apply hover:bg-[#1a1a1a];
+  @apply hover:text-white;
+}
+
+@utility btn {
+  @apply rounded-full;
+  @apply font-sans;
+  @apply uppercase;
+  @apply font-bold;
+  @apply text-white;
+  @apply bg-[#7d1b6e];
+  @apply border-none;
+  @apply text-[11px];
+  @apply tracking-wider;
+  @apply py-2 px-[18px];
+  @apply cursor-pointer;
+  @apply hover:bg-[#651659];
+  @apply transition-colors;
+}
+
+
+#hero-body {
+ p:first-child {
+   @apply font-serif;
+   @apply text-base;
+   @apply md:text-xl;
+   @apply leading-relaxed;
+   @apply text-[#1a1a1a];
+   @apply max-w-[580px];
+   @apply mb-3;
+   @apply md:mb-4;
+   @apply border-l-4;
+   @apply border-[#7d1b6e];
+   @apply pl-4;
+   @apply md:pl-6;
+ }
+}
+
+.about-card-text {
+    h1 {
+    @apply font-bold;
+    @apply mb-1.5;
+    }
+}

@@ -1,9 +1,7 @@
-# Engelberg Website
+Testing out contentful and other stuff
 
-## Dev instructions
-
-To run the site locally:
-1. install docker
-2. run `docker compose up`
-
-If you get errors about file permissions, try `chown -R 1000:1000 .bundler node_modules`
+```
+docker compose run --rm jekyll bundle exec jekyll contentful
+```
+docker compose exec jekyll npx contentful-cli space generate migration -s qtihywd5r4sl -e master -c product
+docker compose exec jekyll npx contentful-cli space migration --space-id qtihywd5r4sl migrations/03-rename-product-to-publication.js

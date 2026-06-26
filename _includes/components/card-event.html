@@ -1,0 +1,33 @@
+{% assign card = include.card %} {% assign event_type = include.event_type %}
+
+<div class="card bg-base-100 shadow-lg rounded-2xl border border-[#e0e0e0] overflow-hidden" data-event-start="{{ card.event_start | date: '%Y-%m-%d' }}">
+
+  {% if card.external_url and card.external_url.size != 0%}
+  <a class="external-link card-link-wrapper" href="{{card.external_url}}">
+  {% else %}
+  <a class="card-link-wrapper" href="{{card.pretty_url | prepend: '/events/' | relative_url }}">
+  {% endif %}
+    <figure class="aspect-16/9">
+      {% if card.featured_image %}
+      <img class="w-full h-full object-cover" src="{{ card.featured_image.url }}" />
+      {% else %}
+      <img class="object-cover" src="{{ include.default_image.url }}" alt="{{ include.default_image.description }}" />
+      {% endif %}
+    </figure>
+  </a>
+    <div class="card-body">
+      <span class="card__date">{{ card.event_start | date: "%B %d, %Y" }}</span>
+      {% if card.external_url and card.external_url.size != 0%}
+      <div class="external-link">
+        <div class="card__title"><span class="title">{{ card.title }}</span><span class="material-icons">open_in_new</span></div>
+      </div>
+      {% else %}
+      <span class="card__title">{{ card.title }}</span>
+      {% endif %}
+      <span class="card__description ">{{ card.short_description }}</span>
+      <span class="card__type">{{ card.event_type }}</span>
+    </div>
+  {% comment %}
+  {% include components/event-filter-tags.html event=card %}
+  {% endcomment %}
+</div>

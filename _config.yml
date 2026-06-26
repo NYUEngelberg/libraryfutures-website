@@ -1,179 +1,87 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing these this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-title: Library Futures
-email:
-description: Research and advocacy for the future of libraries.
-baseurl: # the subpath of your site, e.g. /blog
-url: "https://libraryfutures.net" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: library_futures
-github_username:
-seo_image_path: '/images/og-image.png'
-
-permalink: pretty
-# Build settings
-markdown: kramdown
-# gfm_quirks: 
-#   - paragraph_end
-plugins:
-  - jekyll-feed
-  - jekyll-redirect-from
-
 exclude:
-  - Gemfile
-  - Gemfile.lock
-  - gulpfile.js
+  - vendor
   - node_modules
-  - package.json
+  - src
 
-timezone: America/New_York
-
-# Folder Structure
-source: ./source
-# sass_dir: source/css
-
-collections:
-  components:
-    output: false
-  colors:
-    output: false
+baseurl: /lf-playground
+    
 
 contentful:
   spaces:
+    - lf:
+        space: ENV_CONTENTFUL_SPACE_ID
+        access_token: ENV_CONTENTFUL_ACCESS_TOKEN
+        environment: ENV_CONTENTFUL_ENV
+        base_path: ./
+        destination: /contentful
+        all_entries: true
+        client_options:
+          max_include_resolution_depth: 2
+          reuse_entries: false
+        rich_text_mappings:
+          embedded-entry-block: EmbeddedEntryBlockRenderer
+          embedded-asset-block: EmbeddedAssetBlockRenderer
     - index:
         space: ENV_CONTENTFUL_SPACE_ID
         access_token: ENV_CONTENTFUL_ACCESS_TOKEN
-        base_path: ./source
+        environment: ENV_CONTENTFUL_ENV
+        base_path: ./
         destination: /contentful
         all_entries: true
         cda_query:
           content_type: index
         client_options:
-          max_include_resolution_depth: 2
           reuse_entries: false
-    - genericPage:
+        rich_text_mappings:
+          embedded-entry-block: EmbeddedEntryBlockRenderer
+          embedded-asset-block: EmbeddedAssetBlockRenderer
+    - nav:
         space: ENV_CONTENTFUL_SPACE_ID
         access_token: ENV_CONTENTFUL_ACCESS_TOKEN
-        base_path: ./source
+        environment: ENV_CONTENTFUL_ENV
+        base_path: ./
         destination: /contentful
         all_entries: true
         cda_query:
-          content_type: genericPage
+          content_type: navigation
         client_options:
-          max_include_resolution_depth: 2
+          max_include_resolution_depth: 5
           reuse_entries: false
-    - product:
-        space: ENV_CONTENTFUL_SPACE_ID
-        access_token: ENV_CONTENTFUL_ACCESS_TOKEN
-        base_path: ./source
-        destination: /contentful
-        all_entries: true
-        cda_query:
-          content_type: product
-        client_options:
-          max_include_resolution_depth: 2
-          reuse_entries: false
-    - people:
-        space: ENV_CONTENTFUL_SPACE_ID
-        access_token: ENV_CONTENTFUL_ACCESS_TOKEN
-        base_path: ./source
-        destination: /contentful
-        all_entries: true
-        cda_query:
-          content_type: people
-        client_options:
-          max_include_resolution_depth: 2
-          reuse_entries: false
-    - eventsPage:
-        space: ENV_CONTENTFUL_SPACE_ID
-        access_token: ENV_CONTENTFUL_ACCESS_TOKEN
-        base_path: ./source
-        destination: /contentful
-        all_entries: true
-        cda_query:
-          content_type: eventsPage
-        client_options:
-          max_include_resolution_depth: 2
-          reuse_entries: false
-    - event:
-        space: ENV_CONTENTFUL_SPACE_ID
-        access_token: ENV_CONTENTFUL_ACCESS_TOKEN
-        base_path: ./source
-        destination: /contentful
-        all_entries: true
-        cda_query:
-          content_type: event
-        client_options:
-          max_include_resolution_depth: 2
-          reuse_entries: false
-    - news:
-        space: ENV_CONTENTFUL_SPACE_ID
-        access_token: ENV_CONTENTFUL_ACCESS_TOKEN
-        base_path: ./source
-        destination: /contentful
-        all_entries: true
-        cda_query:
-          content_type: news
-        client_options:
-          max_include_resolution_depth: 2
-          reuse_entries: false
-    - figure:
-        space: ENV_CONTENTFUL_SPACE_ID
-        access_token: ENV_CONTENTFUL_ACCESS_TOKEN
-        base_path: ./source
-        destination: /contentful
-        all_entries: true
-        cda_query:
-          content_type: figure
-        client_options:
-          max_include_resolution_depth: 2
-          reuse_entries: false
-    - initiative:
-        space: ENV_CONTENTFUL_SPACE_ID
-        access_token: ENV_CONTENTFUL_ACCESS_TOKEN
-        base_path: ./source
-        destination: /contentful
-        all_entries: true
-        cda_query:
-          content_type: initiative
-        client_options:
-          max_include_resolution_depth: 2
-          reuse_entries: false
+        rich_text_mappings:
+          embedded-entry-block: EmbeddedEntryBlockRenderer
+          embedded-asset-block: EmbeddedAssetBlockRenderer
+
+plugins:
+  - jekyll-postcss-v2
+
+postcss:
+  cache: false
+
 page_gen:
-  # PRODUCT in Contentful is PUBLICATION (cannot rename content types)
-  - data: 'data.contentful.product.product'
+  - data: 'data.contentful.lf.news'
+    template: 'announcement'
+    name: 'pretty_url'
+    dir: 'post'
+  - data: 'data.contentful.lf.people'
+    template: 'profile'
+    name: 'pretty_url'
+    dir: 'people'
+  - data: 'data.contentful.lf.genericPage'
+    template: 'generic'
+    name: 'pretty_url'
+    dir: ''
+  - data: 'data.contentful.lf.event'
+    template: 'event'
+    name: 'pretty_url'
+    dir: 'events'
+    customSeoImage: 'seo_image'
+  - data: 'data.contentful.lf.publication'
     template: 'publication'
     name: 'pretty_url'
     dir: 'publications'
     customSeoImage: 'seo_image'
     customSeoDescription: 'seo_description'
-  - data: 'data.contentful.people.people'
-    template: 'profile'
-    name: 'pretty_url'
-    dir: 'people'
-  - data: 'data.contentful.genericPage.genericPage'
-    template: 'generic'
-    name: 'pretty_url'
-    dir: ''
-  - data: 'data.contentful.event.event'
-    template: 'event'
-    name: 'pretty_url'
-    dir: 'events'
-    customSeoImage: 'seo_image'
-    customSeoDescription: 'seo_description'
-  - data: 'data.contentful.news.news'
-    template: 'announcement'
-    name: 'pretty_url'
-    dir: 'post'
+
+
+
+

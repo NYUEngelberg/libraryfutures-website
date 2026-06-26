@@ -1,0 +1,78 @@
+{% assign page_data = site.data.contentful.index.index | first %}
+{% assign topNav = page_data.top_navigation %}
+
+<nav class="max-lg:collapse border-b border-[#e0e0e0] bg-white shadow-sm w-full rounded-md">
+  <input id="navbar-1-toggle" class="peer hidden" type="checkbox" />
+  <label for="navbar-1-toggle" class="fixed inset-0 hidden max-lg:peer-checked:block"></label>
+  <div class="collapse-title navbar px-6 py-0">
+    <div class="navbar-start">
+      <div class="flex items-center gap-2 md:gap-3 py-3 pr-3 md:pr-7 mr-2 border-r border-[#e0e0e0]">
+        <a href="{{site.baseurl}}/" class="p-0!">
+          <img src="{{site.baseurl}}/assets/img/LibraryFutures_400px(1).289d317c.png" alt="Library Futures" class="h-7 md:h-9 w-auto">
+        </a>
+      </div>
+
+      <ul class="menu menu-horizontal px-1 hidden lg:flex">
+        {% for nav in topNav %}
+        {% if nav.children %}
+          <li>
+            <details>
+              <summary>{{nav.title}}</summary>
+              <ul class="bg-base-100 rounded-t-none p-2">
+                {% for subnav in nav.children %}
+                  {% comment %}search for relevant item{% endcomment %}
+                  {% assign nav_id = subnav.sys.id %}
+                  {% for search_nav in site.data.contentful.nav.navigation %}
+                    {% if search_nav.sys.id == nav_id %}
+                      {% assign nav_item = search_nav %}
+                    {% endif %}
+                  {% endfor %}
+                  <li><a href="{{site.baseurl}}{{nav_item.link}}">{{nav_item.title}}</a></li>
+                {% endfor %}
+              </ul>
+            </details>
+          </li>
+        {% else %}
+          <li><a href="{{site.baseurl}}{{nav.link}}">{{nav.title}}</a></li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+
+    </div>
+    <div class="navbar-end">
+      <div class="ml-auto pl-3">
+        <button class="btn">Donate</button>
+      </div>
+
+      <label for="navbar-1-toggle" class="btn btn-ghost lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+      </label>
+    </div>
+
+  </div>
+
+  <div class="collapse-content lg:hidden z-1">
+    <ul class="menu px-1">
+      <li>
+        <details>
+          <summary>Who we are</summary>
+          <ul class="bg-base-100 rounded-t-none p-2">
+            <li><a>Link 1</a></li>
+            <li><a>Link 2</a></li>
+          </ul>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Programs</summary>
+          <ul class="bg-base-100 rounded-t-none p-2">
+            <li><a>Link 1</a></li>
+            <li><a>Link 2</a></li>
+          </ul>
+        </details>
+      </li>
+      <li><a>Blog</a></li>
+      <li><a>Events</a></li>
+    </ul>
+  </div>
+</nav>

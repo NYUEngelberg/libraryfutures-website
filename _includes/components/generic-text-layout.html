@@ -1,0 +1,7 @@
+{% assign heading = include.heading %} 
+{% assign content = include.content %}
+{% assign cards = include.cards %}
+
+<div class="prose">
+    {{content | markdownify }}
+</div>

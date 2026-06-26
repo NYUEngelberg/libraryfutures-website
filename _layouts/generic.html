@@ -1,0 +1,37 @@
+---
+layout: tailwind
+---
+{% assign page_data = page %}
+
+{% if page.pretty_url == 'who-we-are' %}
+  {% include who-we-are.html %}
+{% else %}
+
+<main>
+  <section class="grid grid-cols-2 gap-12 px-24 py-22  bg-gradient-to-br from-white via-[#faf9fb] to-white">
+    <div class="">
+      <img class="w-48 m-auto" src="{{page_data.featured_image.url}}" alt="{{page_data.featured_image.description}}"/>
+    </div>
+    <div class="flex flex-col justify-center gap-3">
+      <h1 class="text-6xl font-semibold capitalize">{{ page_data.title }}</h1>
+      <span class="block w-20 md:w-32 h-2 md:h-2 bg-gradient-to-r from-[#7d1b6e] to-transparent"></span>
+      <p class="prose">{{page_data.introduction | markdownify }}</p>
+    </div>
+  </section>
+
+  <section class="px-24">
+    {% include components/generic-text-layout.html heading=section.heading
+        content=page.body
+    %}
+  </section>
+
+
+  <section class="px-24">
+    {% include components/generic-card-layout.html
+        cards=page_data.pinned_research
+        cards_heading=page_data.pinned_title
+        cards_type="lf_cards"
+    %}
+  </section>
+</main>
+{% endif %}

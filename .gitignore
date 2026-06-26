@@ -1,13 +1,5 @@
-_site
-.sass-cache
-.jekyll-metadata
-node_modules
-.publish
-.DS_Store
-.byebug_history
-source/assets
-.vscode/
-source/_data/contentful
-.vercel
 .dockerenv
-.bundler/
+.bundler
+_site
+node_modules
+*.swp
