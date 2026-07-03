@@ -1,4 +1,5 @@
 module.exports = function (migration) {
+  // Delete old index content type
   migration.deleteContentType("index");
 
   const index = migration
@@ -455,7 +456,7 @@ module.exports = function (migration) {
 
       validations: [
         {
-          linkContentType: ["featureCards"],
+          linkContentType: ["news", "event", "publication"],
         },
       ],
 
