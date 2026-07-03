@@ -4,7 +4,7 @@ top_bar: gray
 ---
 
 <main id="main" class="product-page">
-  <div class="px-24 py-22 grid grid-cols-[2fr_1fr] gap-16">
+  <section class="grid lg:grid-cols-[2fr_1fr] lg:px-24 lg:py-22 lg:gap-16 px-6 py-6">
     <div class="column large-7 medium-12 small-12">
       <div class="product__tags-container tags-container">
         {% if page.law_area %}
@@ -33,10 +33,10 @@ top_bar: gray
       </div>
     </div>
     <img src="{{ page.cover_image.url }}" /> 
-  </div>
+  </section>
 
 
-  <section class="grid grid-cols-[2fr_1fr] px-24 py-22 gap-16">
+  <section class="grid lg:grid-cols-[2fr_1fr] lg:px-24 lg:py-22 lg:gap-16 px-6 py-6">
     <div class="prose">
       {% if page.body %}
         {{ page.body | rich_text_to_html }}
@@ -44,7 +44,7 @@ top_bar: gray
     </div>
     <div>
       {% if page.button_url %}
-        <a href="{{ page.button_url }}" class="btn btn-outline w-100">{{ page.button_text }}</a>
+        <a href="{{ page.button_url }}" class="btn btn-outline w-full">{{ page.button_text }}</a>
       {% endif %}
       {% if page.authors %}
         <h3 class="text-2xl my-4">Authors</h3>
