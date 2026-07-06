@@ -2,7 +2,7 @@
 
 <footer class="bg-gradient-to-b from-[#fafafa] to-white pt-8 md:pt-12 pb-6 md:pb-8 px-4 md:px-7 border-t border-[#ddd]">
   <div class="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 md:gap-12 mb-6 md:mb-8">
-    <div><img src="/_components/v2/7766d81a0ac7d3c61932ed35a8dcdd66a9216d6e/LibraryFutures_400px(1).289d317c.png" alt="Library Futures" class="h-12 w-auto mb-4">
+    <div><img src="{{site.baseurl}}/assets/img/LibraryFutures_400px(1).289d317c.png" alt="Library Futures" class="h-12 w-auto mb-4">
       <p class="font-serif text-sm text-[#555] leading-relaxed">{{page_data.footer_text}}</p>
     </div>
     {% assign nav_cols = page_data.footer_nav | size %}
@@ -19,7 +19,7 @@
                 {% endif %}
               {% endfor %}
 
-            <li><a href="#" class="font-serif text-sm text-[#1a1a1a] no-underline hover:text-[#7d1b6e] transition-colors inline-flex items-center gap-1 group">
+              <li><a href="{{nav_item.link | relative_url }}" class="font-serif text-sm text-[#1a1a1a] no-underline hover:text-[#7d1b6e] transition-colors inline-flex items-center gap-1 group">
                 <span class="group-hover:translate-x-1 transition-transform">{{nav_item.title}}</span></a></li>
             {% endfor %}
           </ul>
@@ -30,10 +30,10 @@
   <div class="pt-4 md:pt-6 border-t border-[#e0e0e0]">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-4 flex-wrap text-center md:text-left">
-        <span class="font-sans text-[10px] text-[#aaa]">{{page_data.footer_license}}</span><span class="text-[#ddd]">•</span>
-        <span class="font-sans text-[10px] text-[#aaa]">{{page_data.footer_copyright}}</span>
+        <span class="font-sans text-[12px] text-[#aaa]">{{page_data.footer_license}}</span><span class="text-[#ddd]">•</span>
+        <span class="font-sans text-[12px] text-[#aaa]">{{page_data.footer_copyright}}</span>
       </div>
-      <a href="https://www.nyuengelberg.org/" class="font-sans text-[10px] font-bold text-[#57068c] hover:text-[#7d1b6e] transition-colors">{{page_data.footer_engelberg_link_text}} →</a></div>
+      <a href="https://www.nyuengelberg.org/" class="font-sans text-[12px] font-bold text-[#57068c] hover:text-[#7d1b6e] transition-colors">{{page_data.footer_engelberg_link_text}} →</a></div>
   </div>
 </footer>
 
