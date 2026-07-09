@@ -4,7 +4,7 @@ exclude:
   - src
 
 baseurl: /lf-playground
-    
+permalink: pretty
 
 contentful:
   spaces:
