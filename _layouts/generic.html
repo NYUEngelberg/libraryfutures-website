@@ -8,7 +8,7 @@ layout: tailwind
 {% else %}
 
 <main>
-  <section class="grid grid-cols-2 gap-12 px-24 py-22  bg-gradient-to-br from-white via-[#faf9fb] to-white">
+  <section class="grid grid-cols-2 gap-12 px-24 py-22  bg-gradient-to-br from-white via-[#f9f7fa] to-white bg-gradient-to-br">
     <div class="">
       <img class="w-48 m-auto" src="{{page_data.featured_image.url}}" alt="{{page_data.featured_image.description}}"/>
     </div>
@@ -19,14 +19,14 @@ layout: tailwind
     </div>
   </section>
 
-  <section class="px-24">
+  <section class="px-24 py-18">
     {% include components/generic-text-layout.html heading=section.heading
         content=page.body
     %}
   </section>
 
 
-  <section class="px-24">
+  <section class="px-24 py-8">
     {% include components/generic-card-layout.html
         cards=page_data.pinned_research
         cards_heading=page_data.pinned_title
