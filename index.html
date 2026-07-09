@@ -5,7 +5,7 @@ layout: tailwind
 {% assign page_data = site.data.contentful.index.index | first %}
 
 <!-- HERO -->
-<div class="relative px-4 md:px-7 pt-8 md:pt-16 pb-8 md:pb-12 bg-gradient-to-br from-white via-[#faf9fb] to-white overflow-hidden">
+<div class="relative px-7 md:py-22 md:px-24 pt-8 md:pt-16 pb-8 md:pb-12 bg-gradient-to-br from-white via-[#faf9fb] to-white overflow-hidden">
   <div class="absolute top-0 right-0 w-64 h-64 bg-[#7d1b6e]/5 rounded-full blur-3xl"></div>
   <div class="absolute bottom-0 left-0 w-48 h-48 bg-[#7d1b6e]/3 rounded-full blur-3xl"></div>
   <div class="relative z-10">
@@ -31,14 +31,12 @@ layout: tailwind
         <img src="{{ page_data.hero_image.url }}" alt="{{ page_data.hero_image.description }}" class="w-full lg:w-[320px] h-auto rounded-lg">
       </div>
     </div>
-    <div class=
-    "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr] gap-4 md:gap-6 mt-8 md:mt-12">
-      <div class=
-      "bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-[#e0e0e0]">
-        <p class="font-sans text-xs font-bold tracking-wider uppercase text-[#7d1b6e] mb-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr] gap-4 md:gap-6 mt-8 md:mt-12">
+      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-[#e0e0e0]">
+        <p class="font-sans text-lg font-bold tracking-wider uppercase text-[#7d1b6e] mb-3">
           {{page_data.newsletter_signup_title}}
         </p>
-        <p class="font-serif text-sm text-[#444] mb-4 leading-relaxed">
+        <p class="font-serif text-[#444] mb-4 leading-relaxed">
           {{page_data.newsletter_signup_text}}
         </p>
         <div class="flex border-2 border-[#e0e0e0] rounded-full overflow-hidden hover:border-[#7d1b6e] transition-colors focus-within:border-[#7d1b6e] focus-within:shadow-lg">
@@ -47,7 +45,7 @@ layout: tailwind
         </div>
       </div>
       <div class="bg-gradient-to-br from-[#f8f8f8] to-white rounded-2xl p-6 md:p-8 flex flex-col justify-center gap-3 border border-[#e0e0e0]">
-        <p class="font-sans text-xs font-bold tracking-wider uppercase text-[#7d1b6e] mb-1">{{ page_data.hero_card_title }}</p>
+        <p class="font-sans text-lg font-bold tracking-wider uppercase text-[#7d1b6e] mb-1">{{ page_data.hero_card_title }}</p>
         <a href="{{ page_data.hero_card_link1_link }}" class="font-sans text-[11px] font-bold tracking-wider uppercase border-2 border-[#7d1b6e] rounded-full bg-[#7d1b6e] text-white py-3 px-6 cursor-pointer hover:bg-[#651659] hover:border-[#651659] transition-all transform hover:scale-105 text-left">{{ page_data.hero_card_link1_text }} →</a>
         <a href="{{ page_data.hero_card_link2_link }}" class="font-sans text-[11px] font-bold tracking-wider uppercase border-2 border-[#1a1a1a] rounded-full bg-white py-3 px-6 cursor-pointer text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-all transform hover:scale-105 text-left">
            {{ page_data.hero_card_link2_text }} →
@@ -58,7 +56,7 @@ layout: tailwind
 </div>
 
 <!-- About section -->
-<div class="px-4 md:px-7 pt-8 md:pt-12 pb-6 md:pb-8">
+<div class="px-4 px-8 md:py-8 md:px-24 md:pt-12 bg-gradient-to-b from-white to-[#fafafa]">
   <div class="flex items-end justify-between mb-6 md:mb-8">
     <div>
       <div class="font-sans text-[11px] font-bold tracking-[0.14em] uppercase text-[#aaa] mb-2">{{page_data.about_subtitle}}</div>
@@ -103,7 +101,7 @@ layout: tailwind
 
 
 <!-- Updates section -->
-<div class="px-4 md:px-7 py-8 md:py-12 bg-gradient-to-b from-white to-[#fafafa]">
+<div class="px-4 px-7 md:py-8 md:px-24 bg-gradient-to-b from-white to-[#fafafa]">
   <div class="flex items-end justify-between mb-6 md:mb-8">
     <div>
       <div class="font-sans text-[11px] font-bold tracking-[0.14em] uppercase text-[#aaa] mb-2">{{page_data.updates_subtitle}}</div>
@@ -122,9 +120,8 @@ layout: tailwind
   {% assign card = updates_sorted | first %}
   <!-- TODO if we add events we need to distinguish display -->
   <!-- TODO product -> publication -->
-  <script> console.log({{card | jsonify}}); </script>
   <div class="mb-4 md:mb-6 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 border border-[#e0e0e0]">
-    <div class="grid grid-cols-1 md:grid-cols-[2fr_3fr]">
+    <div class="grid grid-cols-1 md:grid-cols-[2fr_3fr] lg:grid-cols-[1fr_3fr]">
       <div class="bg-[#f3eaf2] border-[1.5px] border-dashed border-[#c9a8c4] rounded-lg flex items-center justify-center min-h-[200px] md:min-h-[280px]">
         {% assign image = card.column_images | first %}
         <img class="w-full h-full object-cover" src={{image.url}} alt="{{image.description}}" />
@@ -173,7 +170,7 @@ layout: tailwind
 </div>
 
 <!-- Featured section -->
-<div class="px-4 md:px-7 py-8 md:py-12 bg-white">
+<div class="px-4 px-7 md:py-8 md:px-24 bg-white">
   <div class="flex items-center justify-between mb-6">
     <div>
       <div class="font-sans text-[11px] font-bold tracking-[0.14em] uppercase text-[#aaa] mb-2">
@@ -228,8 +225,7 @@ layout: tailwind
 </div>
 
 <!-- DONATE -->
-<div class=
-"relative px-4 md:px-7 py-12 md:py-16 bg-gradient-to-br from-[#7d1b6e] via-[#6d1a5f] to-[#57068c] overflow-hidden">
+<div class="relative px-4 px-7 md:py-8 md:px-24 bg-gradient-to-br from-[#7d1b6e] via-[#6d1a5f] to-[#57068c] overflow-hidden">
   <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40"></div>
   <div class="absolute top-10 right-20 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
   <div class="absolute bottom-10 left-20 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
