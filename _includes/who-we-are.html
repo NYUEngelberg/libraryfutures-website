@@ -1,7 +1,7 @@
 {% assign page_data = site.data.contentful.lf.genericPage | where: "pretty_url", "who-we-are" | first %}
 
 <main>
-  <section class="grid grid-cols-2 gap-12 px-24 py-22  bg-gradient-to-br from-white via-[#faf9fb] to-white">
+  <section class="grid md:grid-cols-2 gap-12 py-4 px-6 md:px-24 md:py-22 bg-gradient-to-br from-white via-[#faf9fb] to-white">
     <div class="">
       <img class="w-48 m-auto" src="{{page_data.featured_image.url}}" alt="{{page_data.featured_image.description}}"/>
     </div>
@@ -12,7 +12,7 @@
     </div>
   </section>
 
-  <section class="px-24">
+  <section class="py-4 px-6 md:px-24 md:py-22 ">
     {% assign people = site.data.contentful.lf.people %}
  
     {% comment %} Staff order attribute takes preference in ordering, therafter last name {% endcomment %}

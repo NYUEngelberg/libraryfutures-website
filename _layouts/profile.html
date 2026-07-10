@@ -4,7 +4,7 @@ layout: tailwind
 
 <main id="main"  class="profile-page">
   <!-- Layout 2 -->
-  <section class="grid lg:grid-cols-[33%_67%] gap-12 px-24 py-22">
+  <section class="grid lg:grid-cols-[33%_67%] gap-12 py-4 px-6 md:py-22 md:px-24 ">
     <div class="column large-4 medium-12 small-12">
       <div class="flex flex-col items-center text-center gap-4">
         <img 
@@ -39,7 +39,7 @@ layout: tailwind
     </div>
   </div>
 
-  <section class="px-24 py-16">
+  <section class="py-4 px-6 md:py-22 md:px-24">
     <!-- card sections  -->
     {% if page.featured_research and page.featured_research.size != 0 %}
       {% include components/generic-card-layout.html 
