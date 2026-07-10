@@ -5,10 +5,10 @@ layout: tailwind
 <main id="main" class="announcement-page">
   {% include components/nav-button.html %}
   <!-- Layout 2 -->
-  <div class="py-4 px-6 md:py-22 md:px-24 grid md:grid-cols-3 gap-16">
+  <div class="py-4 px-6 md:py-22 md:px-24 grid md:grid-cols-[1fr_2fr] md:gap-16">
     <div class="">
       <div class="project__type">{{ page.publication_date | date: "%B %d, %Y" }}</div>
-      <h1>{{ page.title }}</h1>
+      <h1 class="text-6xl font-semibold capitalize">{{ page.title }}</h1>
       <div class="project__authors">
         {% for author in page.authors %}
           <div>
@@ -27,7 +27,7 @@ layout: tailwind
         {% endfor %}
       </div>
     </div>
-    <div class="col-span-2">
+    <div class="">
       <article class="prose !max-w-none">
         {{ page.body  | markdownify }}
       </article>
