@@ -5,7 +5,7 @@ layout: tailwind
 <main id="main" class="announcement-page">
   {% include components/nav-button.html %}
   <!-- Layout 2 -->
-  <div class="px-24 py-22 grid grid-cols-3 gap-16">
+  <div class="py-4 px-6 md:py-22 md:px-24 grid md:grid-cols-3 gap-16">
     <div class="">
       <div class="project__type">{{ page.publication_date | date: "%B %d, %Y" }}</div>
       <h1>{{ page.title }}</h1>

@@ -6,7 +6,7 @@ title: Library Futures Events
 {% assign page_data = site.data.contentful.lf.eventsPage | first %}
 
 <main class="">
-  <div class="px-24 py-22 grid grid-cols-2 gap-8 bg-gradient-to-br from-white via-[#faf9fb] to-white">
+  <div class="py-4 px-6 md:px-24 md:py-22 grid md:grid-cols-2 gap-8 bg-gradient-to-br from-white via-[#faf9fb] to-white">
     <div class="">
       <h1 class="text-6xl font-semibold mb-2">{{page.title}}</h1>
       <p>Library Futures holds regular webinars, community calls, and in-person social events. Please join us in-person or online!</p>
@@ -39,9 +39,9 @@ title: Library Futures Events
       </div>
     </div>
   </div>
-  <div class="p-24">
+  <div class="py-4 px-6 md:px-24 md:py-8">
     <h3 class="text-2xl font-semibold mt-6 mb-2">Upcoming Events</h3>
-    <div class="grid grid-cols-4 gap-6">
+    <div class="grid md:grid-cols-4 gap-6">
       {% assign events_sort_asc = site.data.contentful.lf.event | sort: "event_start"| slice: 3 %}
       {% for card in events_sort_asc %} 
         {% include components/card-event.html card=card event_type="upcoming" default_image=page_data.default_event_image %} 
