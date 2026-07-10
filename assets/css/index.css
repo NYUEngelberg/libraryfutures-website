@@ -1,8 +1,8 @@
 ---
 ---
 @import "tailwindcss";
-@plugin "daisyui";
 @plugin "@tailwindcss/typography";
+@plugin "daisyui";
 /*
 @plugin "daisyui/theme" {
   name: "mytheme";
@@ -52,9 +52,9 @@ a {
 nav a, nav summary{
   @apply font-sans;
   @apply uppercase;
-  @apply text-[11px];
+  /*@apply text-[12px];*/
   @apply font-bold;
-  @apply tracking-widest;
+  @apply tracking-wider;
   @apply text-[#1a1a1a];
   @apply py-[18px];
   @apply px-3.5;
