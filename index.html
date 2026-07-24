@@ -12,7 +12,7 @@ layout: tailwind
     <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 lg:gap-12 items-start mb-8 lg:mb-10">
       <div>
         <div class="inline-block mb-4 md:mb-6">
-          <div class="font-sans text-xs font-bold tracking-[0.14em] uppercase text-white bg-[#57068c] px-3 md:px-4 py-1.5 md:py-2">
+          <div class="font-sans text-xs/5 font-bold tracking-[0.14em] uppercase text-white bg-[#57068c] px-3 md:px-4 py-1.5 md:py-2">
             {{ page_data.hero_badge }}
           </div>
         </div>
@@ -39,9 +39,9 @@ layout: tailwind
         <p class="font-serif text-[#444] mb-4 leading-relaxed">
           {{page_data.newsletter_signup_text}}
         </p>
-        <div class="flex border-2 border-[#e0e0e0] rounded-full overflow-hidden hover:border-[#7d1b6e] transition-colors focus-within:border-[#7d1b6e] focus-within:shadow-lg">
-          <input class="flex-1 py-2 px-4 md:px-5 border-none outline-none font-sans bg-white text-[#1a1a1a] placeholder:text-[#bbb]" type="email" placeholder="Email address">
-          <button class="bg-[#7d1b6e] border-none text-sm text-white py-3 px-5 md:px-6 font-sans font-bold tracking-widest uppercase cursor-pointer hover:bg-[#651659] transition-colors whitespace-nowrap">{{page_data.newsletter_signup_button_text}}</button>
+        <div class="flex flex-col md:flex-row gap-3 md:gap-0 md:border-2 md:border-[#e0e0e0] md:rounded-full overflow-hidden hover:border-[#7d1b6e] transition-colors md:focus-within:border-[#7d1b6e] md:focus-within:shadow-lg">
+          <input class="md:flex-1 py-2 px-4 md:px-5 rounded-full md:rounded-none border-2 md:border-none border-[#e0e0e0] focus-within:border-[#7d1b6e] focus-within:shadow-lg md:focus-within:shadow-none outline-none font-sans bg-white text-[#1a1a1a] placeholder:text-[#bbb]" type="email" placeholder="Email address">
+          <button class="bg-[#7d1b6e] border-none rounded-full md:rounded-none text-sm text-white py-3 px-5 md:px-6 font-sans font-bold tracking-widest uppercase cursor-pointer hover:bg-[#651659] transition-colors whitespace-nowrap">{{page_data.newsletter_signup_button_text}}</button>
         </div>
       </div>
       <div class="bg-gradient-to-br from-[#f8f8f8] to-white rounded-2xl p-6 md:p-8 flex flex-col justify-center gap-3 border border-[#e0e0e0]">
@@ -122,16 +122,20 @@ layout: tailwind
   <!-- TODO product -> publication -->
   <div class="mb-4 md:mb-6 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 border border-[#e0e0e0]">
     <div class="grid grid-cols-1 md:grid-cols-[2fr_3fr] lg:grid-cols-[1fr_3fr]">
-      <div class="bg-[#f3eaf2] border-[1.5px] border-dashed border-[#c9a8c4] rounded-lg flex items-center justify-center min-h-[200px] md:min-h-[280px]">
+      <div class="bg-[#f3eaf2] border-[1.5px] border-dashed border-[#c9a8c4] rounded-lg flex items-end justify-center min-h-[200px] md:min-h-[280px]">
         {% assign image = card.column_images | first %}
         <img class="w-full h-full object-cover" src={{image.url}} alt="{{image.description}}" />
       </div>
       <div class="p-6 md:p-10 flex flex-col justify-center">
         <div class="inline-block"><span class="font-sans text-[12px] font-bold tracking-[0.12em] uppercase text-white bg-[#7d1b6e] px-3 py-1.5">{{card.sys.content_type_id}}</span></div>
-        <h2 class="font-serif text-xl md:text-3xl font-semibold text-[#1a1a1a] leading-tight mt-3 md:mt-4 mb-2 md:mb-3 cursor-pointer hover:text-[#7d1b6e] transition-colors">
+        <h2 class="text-xl md:text-3xl font-semibold text-[#1a1a1a] leading-tight mt-3 md:mt-4 mb-2 md:mb-3 cursor-pointer hover:text-[#7d1b6e] transition-colors">
           {{ card.title }}</h2>
-        <div class="font-sans text-[12px] font-bold tracking-widest uppercase text-[#aaa] mb-4 md:mb-6">
-          {{ card.publication_date | date: "%b %d, %Y" }}</div>
+        <div class="font-sans text-[12px] font-bold tracking-widest uppercase text-[#aaa] mb-4">
+          {{ card.publication_date | date: "%b %d, %Y" }}
+        </div>
+        <div class="font-serif mb-4 md:mb-6">
+          <p>{{ card.short_description }}</p>
+        </div>
         <div>
           {% assign post_url = card.pretty_url | prepend: '/post/' | relative_url %}
           <a href="{{post_url}}" class="font-sans text-[12px] md:text-[16px] font-bold tracking-wider uppercase bg-[#1a1a1a] text-white rounded-full py-2.5 md:py-3 px-5 md:px-6 cursor-pointer hover:bg-[#7d1b6e] transition-colors">Read more →</a>
@@ -142,21 +146,26 @@ layout: tailwind
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
     {% for card in updates_sorted offset:1 limit:3 %} 
       {% assign post_url = card.pretty_url | prepend: '/post/' | relative_url %}
-      <a href="{{post_url}}" class="transform translate-y-0 hover:-translate-y-2 transition-all">
-        <div class="border-2 border-[#e0e0e0] rounded-xl overflow-hidden bg-white hover:border-[#7d1b6e] hover:shadow-lg transition-all cursor-pointer group h-full">
-          <div class="bg-[#f3eaf2] border-[1.5px] border-dashed border-[#c9a8c4] rounded-lg flex items-center justify-center h-[100px] md:h-[120px]">
+        <div class="border-2 border-[#e0e0e0] rounded-xl overflow-hidden bg-white hover:border-[#7d1b6e] hover:shadow-lg group h-full transform translate-y-0 hover:-translate-y-2 transition-all md:relative">
+          <div class="bg-[#f3eaf2] border-[1.5px] border-dashed border-[#c9a8c4] rounded-lg flex items-end justify-center h-[100px] md:h-[220px]">
             {% assign image = card.column_images | first %}
             <img class="w-full h-full object-cover" src={{image.url}} alt="{{image.description}}" />
           </div>
           <div class="p-5">
             <span class="inline-block font-sans text-[12px] font-bold tracking-[0.12em] uppercase text-[#7d1b6e] bg-[#f3e8f1] px-2.5 py-1 mb-3">
-              {{card.sys.content_type_id}}</span>
-            <h3 class="font-serif font-semibold leading-tight text-lg text-[#1a1a1a] mb-3 group-hover:text-[#7d1b6e] transition-colors">{{card.title}}</h3>
-            <div class="font-sans text-[12px] font-bold tracking-widest uppercase text-[#aaa]">
-              {{card.publication_date | date:"%b %d, %Y"}}</div>
+              {{card.sys.content_type_id}}
+            </span>
+            <h3 class="font-semibold leading-tight text-lg text-[#1a1a1a] mb-3 group-hover:text-[#7d1b6e] transition-colors">{{card.title}}</h3>
+            <div class="font-sans text-[12px] font-bold tracking-widest uppercase text-[#aaa] mb-3">
+              {{card.publication_date | date:"%b %d, %Y"}}
+            </div>
+            <div class="mb-4 md:mb-0">
+              <p class="font-serif">{{card.short_description}}</p>
+            </div>
+            <a href="{{post_url}}" class="md:sr-only font-sans text-[12px] md:text-[16px] font-bold tracking-wider uppercase bg-[#1a1a1a] text-white rounded-full py-2.5 px-5 cursor-pointer hover:bg-[#7d1b6e] transition-colors">Read more →</a>
           </div>
+          <a href="{{post_url}}" class="hidden md:block absolute top-0 left-0 h-full w-full"> </a>
         </div>
-      </a>
     {% endfor %}
   </div>
   <div class="mt-6 md:mt-8 flex flex-col sm:flex-row justify-center gap-3">
@@ -179,7 +188,8 @@ layout: tailwind
         {{page_data.featured_title}}
       </h2>
     </div>
-    <a href="{{page_data.featured_section_link_url}}" class="button hidden sm:block font-sans text-sm font-bold tracking-wider uppercase border-[1.5px] border-[#1a1a1a] rounded-full bg-white py-2 px-5 cursor-pointer text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-colors">{{page_data.featured_section_link_text}} →</a></div>
+    <a href="{{page_data.featured_section_link_url}}" class="button hidden sm:block font-sans text-sm font-bold tracking-wider uppercase border-[1.5px] border-[#1a1a1a] rounded-full bg-white py-2 px-5 cursor-pointer text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-colors">{{page_data.featured_section_link_text}} →</a>
+  </div>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     {% for card in page_data.featured_cards limit:4 %}
       {% case card.sys.content_type_id %}
@@ -188,11 +198,13 @@ layout: tailwind
           {% assign card_url = card.pretty_url | prepend: '/publications/' | relative_url %}
           {% assign image = card.cover_image %}
           {% assign card_date = card.publication_date %}
+          {% assign short_description = card.short_description %}
         {% when "news" %}
           {% assign tag="Blog" %}
           {% assign card_url = card.pretty_url | prepend: '/post/' | relative_url %}
           {% assign image = card.column_images | first %}
           {% assign card_date = card.publication_date %}
+          {% assign short_description = card.short_description %}
         {% when "event" %}
           {% assign tag="Event" %}
           {% if card.external_url and card.external_url.size != 0 %}
@@ -202,23 +214,29 @@ layout: tailwind
           {% endif %}
           {% assign image = card.featured_image %}
           {% assign card_date = card.event_start %}
+          {% assign short_description = card.short_description %}
         {% else %}
           {% assign tag="" %}
       {% endcase %}
-      <div class="transform translate-y-0 hover:-translate-y-2 transition-all">
-        <a href="{{card_url}}">
-          <div class="border-2 border-[#e0e0e0] rounded-xl overflow-hidden bg-white hover:border-[#7d1b6e] hover:shadow-lg transition-all cursor-pointer group h-full">
-            <div class="bg-[#f3eaf2] border-[1.5px] border-dashed border-[#c9a8c4] rounded-lg flex items-center justify-center h-[100px] md:h-[120px] overflow-hidden">
-              <img src="{{image.url}}" alt="{{image.description}}" />
-            </div>
-            <div class="p-5">
-              <span class="inline-block font-sans text-[12px] font-bold tracking-[0.12em] uppercase text-[#7d1b6e] bg-[#f3e8f1] px-2.5 py-1 mb-3">
-                {{tag}}</span>
-              <h3 class="font-serif text-lg font-bold leading-tight text-[#1a1a1a] mb-3 group-hover:text-[#7d1b6e] transition-colors">{{card.title}}</h3>
-              <div class="font-sans text-[12px] font-bold tracking-widest uppercase text-[#aaa]">
-                {{card_date | date:"%b %d, %Y"}}</div>
-            </div>
+      <div class="relative transform translate-y-0 hover:-translate-y-2 transition-all">
+        <div class="border-2 border-[#e0e0e0] rounded-xl overflow-hidden bg-white hover:border-[#7d1b6e] hover:shadow-lg transition-all group h-full">
+          <div class="bg-[#f3eaf2] border-[1.5px] border-dashed border-[#c9a8c4] rounded-lg flex items-end justify-center h-[100px] md:h-[220px] overflow-hidden">
+            <img src="{{image.url}}" alt="{{image.description}}" />
           </div>
+          <div class="p-5">
+            <span class="inline-block font-sans text-[12px] font-bold tracking-[0.12em] uppercase text-[#7d1b6e] bg-[#f3e8f1] px-2.5 py-1 mb-3">
+              {{tag}}</span>
+            <h3 class="font-sans text-lg font-bold leading-tight text-[#1a1a1a] mb-3 group-hover:text-[#7d1b6e] transition-colors">{{card.title}}</h3>
+            <div class="font-sans text-[12px] font-bold tracking-widest uppercase text-[#aaa] mb-3">
+              {{card_date | date:"%b %d, %Y"}}
+            </div>
+            <div class="mb-4 md:mb-0">
+              <p class="font-serif">{{short_description}}</p>
+            </div>
+            <a href="{{card_url}}" class="md:sr-only font-sans text-[12px] md:text-[16px] font-bold tracking-wider uppercase bg-[#1a1a1a] text-white rounded-full py-2.5 px-5 cursor-pointer hover:bg-[#7d1b6e] transition-colors">Read more →</a>
+          </div>
+        </div>
+        <a href="{{card_url}}" class="hidden md:block absolute top-0 left-0 h-full w-full">
         </a>
       </div>
     {% endfor %}
@@ -239,8 +257,8 @@ layout: tailwind
       <div class="font-serif text-base md:text-lg leading-relaxed text-white/95 max-w-2xl mx-auto mb-6 md:mb-8">{{page_data.donate_section_text | rich_text }}</div>
       <a href="/donate" class="font-sans text-sm font-bold tracking-wider uppercase border-2 border-white rounded-full bg-white text-[#7d1b6e] py-4 px-10 cursor-pointer hover:bg-transparent hover:text-white transition-all transform hover:scale-110 shadow-2xl hover:shadow-white/20">{{page_data.donate_button_text}} →</a>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 md:mt-12 pt-6 md:pt-8 border-t border-white/20">
-      <div class="text-center">
+    <div class="grid grid-cols-1 md:grid-cols-4 mt-8 md:mt-12 pt-6 md:pt-8 md:border-t border-white/20">
+      <div class="text-center pb-4 md:pb-0">
         <div class="font-sans text-3xl font-black text-white mb-1">{{page_data.donate_section_title1}}</div>
         <div class="font-sans text-sm tracking-wider uppercase text-white/70">{{page_data.donate_section_subtext1}}</div>
       </div>
@@ -248,7 +266,11 @@ layout: tailwind
         <div class="font-sans text-3xl font-black text-white mb-1">{{page_data.donate_section_title2}}</div>
         <div class="font-sans text-sm tracking-wider uppercase text-white/70">{{page_data.donate_section_subtext2}}</div>
       </div>
-      <div class="text-center">
+      <div class="text-center border-b md:border-b-0 md:border-r border-white/20 py-4 md:py-0">
+        <div class="font-sans text-3xl font-black text-white mb-1">{{page_data.donate_section_title3}}</div>
+        <div class="font-sans text-sm tracking-wider uppercase text-white/70">{{page_data.donate_section_subtext3}}</div>
+      </div>
+      <div class="text-center pt-4 md:pt-0">
         <div class="font-sans text-3xl font-black text-white mb-1">{{page_data.donate_section_title3}}</div>
         <div class="font-sans text-sm tracking-wider uppercase text-white/70">{{page_data.donate_section_subtext3}}</div>
       </div>

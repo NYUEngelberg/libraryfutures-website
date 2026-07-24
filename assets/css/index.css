@@ -3,6 +3,12 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @plugin "daisyui";
+
+@theme {
+    --color-purple-1: #7d1b6e;
+    --color-purple-2: #57068c;
+}
+
 /*
 @plugin "daisyui/theme" {
   name: "mytheme";
@@ -115,9 +121,12 @@ nav details > ul {
  }
 }
 
-.about-card-text {
-    h1 {
+.about-card-text, .prose {
+  h1 {
     @apply font-bold;
     @apply mb-1.5;
-    }
+  }
+  p {
+    @apply font-serif;
+  }
 }
