@@ -1,32 +1,44 @@
-{% assign card = include.card %} {% assign event_type = include.event_type %}
+{% assign card = include.card %}
+{% assign event_type = include.event_type %}
 
-<div class="card bg-base-100 shadow-lg rounded-2xl border border-[#e0e0e0] overflow-hidden" data-event-start="{{ card.event_start | date: '%Y-%m-%d' }}">
-
-  {% if card.external_url and card.external_url.size != 0%}
-  <a class="external-link card-link-wrapper" href="{{card.external_url}}">
+<div class="relative bg-base-100 shadow-lg rounded-2xl border border-[#e0e0e0] overflow-hidden" data-event-start="{{ card.event_start | date: '%Y-%m-%d' }}">
+  {% if card.external_url and card.external_url.size != 0 %}
+    {% assign url=card.external_url %}
   {% else %}
-  <a class="card-link-wrapper" href="{{card.pretty_url | prepend: '/events/' | relative_url }}">
+    {% assign url=card.pretty_url | prepend: '/events/' | relative_url %}
   {% endif %}
-    <figure class="aspect-16/9">
-      {% if card.featured_image %}
-      <img class="w-full h-full object-cover" src="{{ card.featured_image.url }}" />
-      {% else %}
-      <img class="object-cover" src="{{ include.default_image.url }}" alt="{{ include.default_image.description }}" />
-      {% endif %}
-    </figure>
-  </a>
-    <div class="card-body">
-      <span class="card__date">{{ card.event_start | date: "%B %d, %Y" }}</span>
+  <figure class="aspect-16/9">
+    {% if card.featured_image %}
+      <img class="w-full h-full object-cover" src="{{ card.featured_image.url }}" alt="{{card.featured_image.description}}"/>
+    {% else %}
+      <img class="w-full h-full object-cover" src="{{ include.default_image.url }}" alt="{{include.default_image.description}}" />
+    {% endif %}
+  </figure>
+  <div class="p-5 flex flex-col gap-3">
+    <span class="">{{ card.event_start | date: "%B %d, %Y" }}</span>
+    <div class="">
+      <span class="font-sans text-lg font-bold leading-tight text-[#1a1a1a] mb-1 group-hover:text-[#7d1b6e] transition-colors">{{ card.title }}</span>
+      {% comment %}
       {% if card.external_url and card.external_url.size != 0%}
-      <div class="external-link">
-        <div class="card__title"><span class="title">{{ card.title }}</span><span class="material-icons">open_in_new</span></div>
-      </div>
-      {% else %}
-      <span class="card__title">{{ card.title }}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline-block size-5 self-center">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+        </svg>
       {% endif %}
-      <span class="card__description ">{{ card.short_description }}</span>
-      <span class="card__type">{{ card.event_type }}</span>
+      {% endcomment %}
     </div>
+    {% if card.event_type and card.event_type.size != 0 %}
+    <div>
+      <span class="inline-block font-sans text-[12px] font-bold tracking-[0.12em] uppercase text-[#7d1b6e] bg-[#f3e8f1] px-2.5 py-1">{{ card.event_type }}</span>
+    </div>
+    {% endif %}
+
+    <p class="">{{ card.short_description }}</p>
+
+    <div>
+      <a href="{{url}}" class="md:sr-only font-sans text-[12px] md:text-[16px] font-bold tracking-wider uppercase bg-[#1a1a1a] text-white rounded-full py-2.5 px-5 cursor-pointer hover:bg-[#7d1b6e] transition-colors">View details →</a>
+    </div>
+  </div>
+  <a class="hidden md:block absolute top-0 left-0 h-full w-full" href="{{url}}"></a>
   {% comment %}
   {% include components/event-filter-tags.html event=card %}
   {% endcomment %}

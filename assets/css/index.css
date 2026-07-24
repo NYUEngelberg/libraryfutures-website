@@ -55,7 +55,7 @@ a {
 }
 */
 
-nav a, nav summary{
+nav a, nav summary {
   @apply font-sans;
   @apply uppercase;
   /*@apply text-[12px];*/
@@ -129,4 +129,15 @@ nav details > ul {
   p {
     @apply font-serif;
   }
+}
+
+.prose {
+  .button {
+    @apply btn;
+    @apply btn-outline;
+  }
+}
+
+a.link {
+  @apply underline;
 }
