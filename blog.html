@@ -61,8 +61,10 @@ description: All the latest research, education, advocacy, and news from Library
       </button>
     </div>
     {% endcomment %}
-    <div class="list">
-      {% for news_item in news %} {% include components/news-list-item.html item=news_item %} {% endfor %}
+    <div>
+      {% for news_item in news %}
+        {% include components/news-list-item.html item=news_item %} 
+      {% endfor %}
     </div>
   </div>
 </main>

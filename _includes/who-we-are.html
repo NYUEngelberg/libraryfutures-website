@@ -85,19 +85,15 @@
 
       {% assign cards=community_alumni_cards %}
       {% assign cards_heading="Community Alumni"%}
-      {% assign cards_type="people_cards"%}
-      {% assign cards_alumni=true %}
-      <div class="row expanded row--thin">
-        <div class="column large-12 small-12 card-section-heading">
-          <h2 class="text-3xl pt-18 pb-6 font-semibold">
-            {{ cards_heading }}
-          </h2>
-        </div>
+      <div class="mb-8">
+        <h2 class="text-3xl pt-18 pb-6 font-semibold">
+          {{ cards_heading }}
+        </h2>
         <div class="grid lg:grid-cols-4">
           {% for card in cards %}
           <div class="flex flex-col items-center text-center">
             <span class="block my-8 w-20 md:w-32 h-2 md:h-2 bg-gradient-to-r from-[#7d1b6e] to-transparent"></span>
-            <a href="{{ card.pretty_url | prepend: '/people/' | relative_url }}">
+            <a class="link" href="{{ card.pretty_url | prepend: '/people/' | relative_url }}">
               <h4 class="text-xl font-semibold mb-2">{{ card.display_name }}</h4>
             </a>
             <p class="">{{ card.title }}</p>

@@ -5,39 +5,42 @@
 {% assign cards_link_text = include.cards_link_text %}
 
 {% if cards_type == 'lf_cards' %}
-
-<div class="">
-  {% if cards %}
-    {% if cards_heading %}
-    <h2 class="text-3xl pt-18 pb-6 font-semibold">{{ cards_heading }}</h2>
-    {% endif %}
-    {% if cards_link_to and cards.link_to.size != 0 %}
-    <a class="link link--arrow" href="{{ cards_link_to | relative_url }}">{{cards_link_text}}</a>
+  <div class="">
+    {% if cards %}
+      {% if cards_heading %}
+      <h2 class="text-3xl pb-6 font-semibold">{{ cards_heading }}</h2>
+      {% endif %}
+      {% if cards_link_to and cards.link_to.size != 0 %}
+      <a class="link" href="{{ cards_link_to | relative_url }}">{{cards_link_text}}</a>
     {% endif %}
     <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {% for card in cards %}
         {% if card.sys.content_type_id == 'news' %}
           {% comment %} news = blog post {% endcomment %}
-            <a class="flex flex-col items-center bg-white rounded-2xl shadow-lg border border-[#e0e0e0] overflow-hidden" href="{{ card.pretty_url | prepend: 'post/' | relative_url }}">
-              {% assign featuredImage = card.column_images | first %}
-              <div class="aspect-16/9">
-                <img 
-                  src="{{ featuredImage.url }}" 
-                  class="object-cover w-full h-full object-cover" 
-                />
-              </div>
-              <div class="p-5">
-                <span class="inline-block font-sans text-[12px] font-bold tracking-[0.12em] uppercase text-[#7d1b6e] bg-[#f3e8f1] px-2.5 py-1 mb-3">blog</span>
-                <h4 class="text-xl font-semibold">{{ card.title }}</h4>
-                <span class="card__subtitle">{{ card.short_description }}</span>
-                {% assign author = card.full_author %}
-                {% assign subline_split = author | split: "](" | first | replace: "[", "" %}
-                <div class="card__author">{{ subline_split }}</div>
-              </div>
-            </a>
+          <div class="relative flex flex-col items-center bg-white rounded-2xl shadow-lg border border-[#e0e0e0] overflow-hidden ">
+            {% assign card_url = card.pretty_url | prepend: 'post/' | relative_url %}
+            {% assign featuredImage = card.column_images | first %}
+            <div class="aspect-16/9">
+              <img 
+                src="{{ featuredImage.url }}" 
+                class="object-cover w-full h-full object-cover" 
+              />
+            </div>
+            <div class="p-5">
+              <span class="inline-block font-sans text-[12px] font-bold tracking-[0.12em] uppercase text-[#7d1b6e] bg-[#f3e8f1] px-2.5 py-1 mb-3">blog</span>
+              <h4 class="text-xl font-semibold">{{ card.title }}</h4>
+              <p>{{ card.short_description }}</p>
+              {% assign author = card.full_author %}
+              {% assign subline_split = author | split: "](" | first | replace: "[", "" %}
+              <div class="mb-4 md:mb-0">{{ subline_split }}</div>
+              <a href="{{card_url}}" class="md:sr-only font-sans text-[12px] text-[16px] font-bold tracking-wider uppercase bg-[#1a1a1a] text-white rounded-full py-2.5 px-5 cursor-pointer hover:bg-[#7d1b6e] transition-colors">Read more →</a>
+            </div>
+            <a href="{{card_url}}" class="hidden md:block absolute top-0 left-0 h-full w-full"></a>
+          </div>
         {% elsif card.sys.content_type_id == 'product' %}
           {% comment %} product = publication TODO {% endcomment %}
-          <a class="flex flex-col items-center bg-white rounded-2xl shadow-lg border border-[#e0e0e0] overflow-hidden" href="{{ card.pretty_url | prepend: 'publications/' | relative_url }}">
+          <div class="relative flex flex-col items-center bg-white rounded-2xl shadow-lg border border-[#e0e0e0] overflow-hidden" href="">
+            {% assign card_url = card.pretty_url | prepend: 'publications/' | relative_url %}
             <div class="aspect-16/9">
               <img 
                 src="{{ card.cover_image.url }}"
@@ -50,9 +53,11 @@
               <span class="card__subtitle">{{ card.short_description }}</span>
               {% assign author = card.full_author %}
               {% assign subline_split = author | split: "](" | first | replace: "[", "" %}
-              <div class="card__author">{{ subline_split }}</div>
+              <div class="mb-4 md:mb-0">{{ subline_split }}</div>
+              <a href="{{card_url}}" class="md:sr-only font-sans text-[12px] text-[16px] font-bold tracking-wider uppercase bg-[#1a1a1a] text-white rounded-full py-2.5 px-5 cursor-pointer hover:bg-[#7d1b6e] transition-colors">Read more →</a>
             </div>
-          </a>
+            <a href="{{card_url}}" class="hidden md:block absolute top-0 left-0 h-full w-full"></a>
+          </div>
         {% elsif card.sys.content_type_id == 'event' %}
           {% comment %} product = publication {% endcomment %}
           <div class="relative flex flex-col items-center bg-white rounded-2xl shadow-lg border border-[#e0e0e0] overflow-hidden">
@@ -74,6 +79,7 @@
             <a class="hidden md:block absolute top-0 left-0 h-full w-full" href="{{ card.pretty_url | prepend: 'events/' | relative_url }}"></a>
           </div>
         {% elsif card.sys.content_type_id == 'people' %}
+          <!-- TODO -->
           <div class="card card--lfcard">
             <a class="card-link-wrapper" href="{{ card.pretty_url | prepend: 'people/' | relative_url }}">
               <div class="card__icon" style="background-image: url({{ card.photo.url }})"></div>
@@ -158,16 +164,20 @@
     <h2 class="text-3xl pt-6 pb-6 font-semibold">{{ cards_heading }}</h2>
     <div class="grid lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {% for card in cards %}
-      <a class="flex flex-col items-center text-center bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-[#e0e0e0] card-link-wrapper" href="{{ card.pretty_url | prepend: '/people/' | relative_url }}">
-        <img
-          class="w-44 h-44 rounded-full object-cover"
-          src="{{card.photo.url}}"
-          alt="{{card.display_name | escape}} Image"
-        />
-        <span class="block my-10 w-20 md:w-32 h-2 md:h-2 bg-gradient-to-r from-[#7d1b6e] to-transparent"></span>
-        <h4 class="text-xl font-semibold mb-3">{{ card.display_name }}</h4>
-        <p class="">{{ card.title }}</p>
-      </a>
+        <div class="relative flex flex-col items-center text-center bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-[#e0e0e0] card-link-wrapper group">
+          {% assign card_url = card.pretty_url | prepend: '/people/' | relative_url %}
+          <img
+            class="w-44 h-44 rounded-full object-cover"
+            src="{{card.photo.url}}"
+            alt="{{card.display_name | escape}} Image"
+          />
+          <span class="block my-10 w-20 md:w-32 h-2 md:h-2 bg-gradient-to-r from-[#7d1b6e] to-transparent"></span>
+          <a href="{{card_url}}" class="link group-hover:text-purple-1">
+            <h4 class="text-xl font-semibold mb-3">{{ card.display_name }}</h4>
+          </a>
+          <p class="">{{ card.title }}</p>
+          <a href="{{card_url}}" class="hidden md:block absolute top-0 left-0 h-full w-full"></a>
+        </div>
       {% endfor %}
     </div>
   </div>

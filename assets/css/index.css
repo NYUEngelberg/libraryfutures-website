@@ -141,3 +141,8 @@ nav details > ul {
 a.link {
   @apply underline;
 }
+
+a.link:hover, .prose a:hover {
+  color: #7d1b6e;
+  transition: color 0.1s ease-in-out;
+}

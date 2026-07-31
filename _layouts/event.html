@@ -3,17 +3,17 @@ layout: tailwind
 ---
 
 <main id="main" class="event-page">
-  <div class="px-24 py-22 grid md:grid-cols-2 lg:grid-cols-[7fr_4fr] gap-5">
+  <div class="md:px-24 md:py-22 lg:gap-16 px-6 py-4 grid md:grid-cols-2 lg:grid-cols-[7fr_4fr] gap-5">
     <div class="">
       <div class="event__date">{{ page.event_start | date: "%B %d, %Y" }}</div>
       <h1 class="text-4xl font-semibold font-sans mb-6">{{ page.title }}</h1>
-      <div class="prose">
+      <div class="prose !max-w-none">
         {{ page.long_description | strip_html | markdownify }}
       </div>
       <div class="bar" style="background-image: url('/images/bar-p.svg')"></div>
     </div>
     <div class="">
-      <div class="event__featured-image-wrapper">
+      <div>
         <img src="{{page.featured_image.url}}" alt="{{page.featured_image.description}}" />
       </div>
       {% if page.button_url and page.button_text %}
@@ -23,9 +23,11 @@ layout: tailwind
   </div>
 
   <!-- MARKDOWN SECTIONS -->
-  <div class="row expanded">
+  <div class="md:px-24 md:py-8 lg:gap-16 px-6 py-4 grid md:grid-cols-[3fr_1fr] gap-8">
     <div class="column large-7 medium-12 small-12 markdown-content main-content">
-     {{ page.body | markdownify }}
+      <div class="prose">
+        {{ page.body | markdownify }}
+      </div>
     </div>
     <div class="column large-offset-1 large-4 medium-12 small-12 event__sidebar-body no-padding markdown-content">
       {% for item in page.event_media %}
