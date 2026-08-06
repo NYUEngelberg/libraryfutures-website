@@ -16,6 +16,16 @@
 
     {% include footer.html %}
 
+    {% for js in page.extra_js %}
+      {% if js contains '<script>' %}
+        {{ js }}
+      {% elsif js contains 'http' %}
+        <script src="{{ js }}"></script>
+      {% else %}
+        <script src="{{site.baseurl}}{{ js }}"></script>
+      {% endif %}
+    {% endfor %}
+
   </body>
 </html>
 

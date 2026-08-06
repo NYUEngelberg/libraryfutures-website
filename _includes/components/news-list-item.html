@@ -3,47 +3,20 @@
 {% assign post_url = post.pretty_url | prepend: '/post/' | relative_url %}
 
 <article class="py-3 md:pb-8">
+  <span class="hidden" data-author="all"></span>
+  {% for author in post.authors %}
+  <span class="hidden" data-author="{{author.display_name | slugify }}"></span>
+  {% endfor %}
   <div class="mb-3">
     <time class="font-sans text-[10px] font-bold tracking-wider uppercase text-[#999]">
       {{ post.publication_date | date: "%B %d, %Y" }}
     </time>
   </div>
-  <a href="{{post_url}}" class="link">
-    <h2 class="font-sans font-black uppercase text-[18px] md:text-[20px] mb-3 leading-tight">{{post.title}}</h2>
-  </a>
+  
+    <h2 class="font-sans font-black uppercase text-[18px] md:text-[20px] mb-3 leading-tight">
+      <a href="{{post_url}}" class="link">{{post.title}}</a>
+    </h2>
   <p class="font-serif text-[14px] md:text-[15px] text-[#555] leading-relaxed mb-3">
     {{post.short_description}}
   </p>
 </article>
-
-{% comment %}
-<div class="news-list-item markdown-secondary">
-  <h3>
-  {% if item.publication_type == 'In the News'%}
-    <a class="link--primary news-list-item__title external-link" href="{{ item.external_url }}">
-  {% else %}
-    <a class="link--primary news-list-item__title" href="{{ item.pretty_url | prepend: '/post/' | relative_url }}">
-  {% endif %}
-    {{ item.title }}
-  </a>
-  </h3>
-  <span class="">{{ item.subtitle }}</span>
-  <span class="news-list-item__publication">{{ item.publication }}</span>
-  <span class="news-list-item__authors">{{ item.named_author | markdownify }}</span>
-  <span class="news-list-item__date">{{ item.publication_date | date: "%B %d, %Y"  }}</span>
-  <p class="news-list-item__description">{{ item.short_description }}</p>
-  <div class="tags-container">
-
-    {% for tag in item.law_area %}
-      <div class="tag tag--law-area">{{ tag | capitalize }}</div>
-    {% endfor %}
-    {% for tag in item.topic %}
-      <div class="tag tag--topic">{{ tag | capitalize }}</div>
-    {% endfor %}
-    {% for tag in item.tag %}
-      <div class="tag tag--tag">{{ tag | capitalize }}</div>
-    {% endfor %}
-  </div>
-    {% include components/news-filter-tags.html item=news_item %}
-</div>
-{% endcomment %}
