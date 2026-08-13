@@ -3,6 +3,7 @@ exclude:
   - node_modules
   - src
 
+encoding: utf-8
 baseurl: /lf-playground
 permalink: pretty
 
