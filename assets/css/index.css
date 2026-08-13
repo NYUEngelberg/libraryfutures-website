@@ -2,7 +2,7 @@
 ---
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-@plugin "daisyui";
+/*@plugin "daisyui";*/
 
 @layer base {
   body {
