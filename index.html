@@ -169,10 +169,10 @@ layout: tailwind
     {% endfor %}
   </div>
   <div class="mt-6 md:mt-8 flex flex-col sm:flex-row justify-center gap-3">
-    <a href="/blog" class="font-sans text-sm font-bold tracking-wider uppercase border-[1.5px] border-[#1a1a1a] rounded-full bg-white py-2.5 px-6 cursor-pointer text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-colors">
+    <a href="{{site.baseurl}}/blog" class="font-sans text-sm font-bold tracking-wider uppercase border-[1.5px] border-[#1a1a1a] rounded-full bg-white py-2.5 px-6 cursor-pointer text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-colors">
       {{page_data.updates_section_post_link_text}} →
     </a>
-    <a href="/events" class="font-sans text-sm font-bold tracking-wider uppercase border-[1.5px] border-[#7d1b6e] rounded-full bg-[#7d1b6e] text-white py-2.5 px-6 cursor-pointer hover:bg-[#651659] transition-colors">
+    <a href="{{site.baseurl}}/events" class="font-sans text-sm font-bold tracking-wider uppercase border-[1.5px] border-[#7d1b6e] rounded-full bg-[#7d1b6e] text-white py-2.5 px-6 cursor-pointer hover:bg-[#651659] transition-colors">
       {{page_data.updates_section_event_link_text}} →
     </a>
   </div>
