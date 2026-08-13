@@ -3,16 +3,16 @@ layout: tailwind
 ---
 
 <main id="main" class="event-page">
-  <div class="md:px-24 md:py-22 lg:gap-16 px-6 py-4 grid md:grid-cols-2 lg:grid-cols-[7fr_4fr] gap-5">
-    <div class="">
-      <div class="event__date">{{ page.event_start | date: "%B %d, %Y" }}</div>
+  <div class="md:px-24 md:py-22 md:gap-16 px-6 py-4 grid md:grid-cols-2 md:grid-cols-[7fr_4fr] gap-5">
+    <div>
+      <div>{{ page.event_start | date: "%B %d, %Y" }}</div>
       <h1 class="text-4xl font-semibold font-sans mb-6">{{ page.title }}</h1>
-      <div class="prose !max-w-none">
+      <div class="prose">
         {{ page.long_description | strip_html | markdownify }}
       </div>
       <div class="bar" style="background-image: url('/images/bar-p.svg')"></div>
     </div>
-    <div class="">
+    <div class="md:row-span-2">
       <div>
         <img src="{{page.featured_image.url}}" alt="{{page.featured_image.description}}" />
       </div>
@@ -20,16 +20,10 @@ layout: tailwind
         <a href="{{page.button_url}}" class="w-full my-5 btn btn-outline">{{page.button_text}}</a>
       {% endif %}
     </div>
-  </div>
-
-  <!-- MARKDOWN SECTIONS -->
-  <div class="md:px-24 md:py-8 lg:gap-16 px-6 py-4 grid md:grid-cols-[3fr_1fr] gap-8">
-    <div class="column large-7 medium-12 small-12 markdown-content main-content">
-      <div class="prose">
-        {{ page.body | markdownify }}
-      </div>
+    <div class="prose">
+      {{ page.body | markdownify }}
     </div>
-    <div class="column large-offset-1 large-4 medium-12 small-12 event__sidebar-body no-padding markdown-content">
+    <div>
       {% for item in page.event_media %}
         <figure>
           {% assign alt_desc = item.description | replace: '"', '' | replace: "'", '' %}
