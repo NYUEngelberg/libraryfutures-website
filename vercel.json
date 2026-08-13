@@ -1,7 +1,7 @@
 {
     "buildCommand": "bundle exec jekyll contentful && bundle exec jekyll build --trace",
     "devCommand": "bundle exec jekyll contentful && bundle exec jekyll serve",
-    "installCommand": "bundle install && npm install",
+    "installCommand": "bundle install && npm ci",
     "redirects": [
         {
             "source": "/staff/:path+",
