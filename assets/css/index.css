@@ -4,9 +4,16 @@
 @plugin "@tailwindcss/typography";
 @plugin "daisyui";
 
+@layer base {
+  body {
+    font-size: 18px;
+  }
+}
+
 @theme {
     --color-purple-1: #7d1b6e;
     --color-purple-2: #57068c;
+    --text-base: 18px;
 }
 
 /*
@@ -95,7 +102,7 @@ nav details > ul {
   @apply text-white;
   @apply bg-[#7d1b6e];
   @apply border-none;
-  @apply text-[11px];
+  @apply text-[14px];
   @apply tracking-wider;
   @apply py-2 px-[18px];
   @apply cursor-pointer;
@@ -132,10 +139,26 @@ nav details > ul {
   @apply font-serif;
 }
 
-.prose {
-  .button {
-    @apply btn;
-    @apply btn-outline;
+@layer utilities {
+  .prose {
+    @apply text-base;
+    @apply font-serif;
+    & :where(table) {
+        @apply text-base;
+    }
+    max-width: none; /* !max-w-none not needed anymore */
+
+    blockquote {
+        p {
+          &:first-of-type::before { content: none; }
+          &:last-of-type::after { content: none; }
+        }
+    }
+
+    .button {
+      @apply btn;
+      @apply btn-outline;
+    }
   }
 }
 
@@ -143,7 +166,7 @@ a.link {
   @apply underline;
 }
 
-a.link:hover, .prose a:hover {
+a.link:hover, .prose a:not(.button):hover {
   color: #7d1b6e;
   transition: color 0.1s ease-in-out;
 }
