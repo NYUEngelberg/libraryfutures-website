@@ -73,10 +73,10 @@
               <span>{{ card.short_description }}</span>
               <div>{{ card.event_start | date: "%B %d, %Y" }}</div>
               <div>
-                <a href="{{ card.pretty_url | prepend: 'events/' | relative_url }}" class="md:sr-only font-sans text-[12px] md:text-[16px] font-bold tracking-wider uppercase bg-[#1a1a1a] text-white rounded-full py-2.5 px-5 cursor-pointer hover:bg-[#7d1b6e] transition-colors">Read more →</a>
+                <a href="{{ card_url }}" class="md:sr-only font-sans text-[16px] font-bold tracking-wider uppercase bg-[#1a1a1a] text-white rounded-full py-2.5 px-5 cursor-pointer hover:bg-[#7d1b6e] transition-colors">More details →</a>
               </div>
             </div>
-            <a class="hidden md:block absolute top-0 left-0 h-full w-full" href="{{ card.pretty_url | prepend: 'events/' | relative_url }}"></a>
+            <a href="{{card_url}}" class="hidden md:block absolute top-0 left-0 h-full w-full"></a>
           </div>
         {% elsif card.sys.content_type_id == 'people' %}
           <!-- TODO -->
