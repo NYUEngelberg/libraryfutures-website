@@ -39,10 +39,23 @@ layout: tailwind
         <p class="font-serif text-[#444] mb-4 leading-relaxed">
           {{page_data.newsletter_signup_text}}
         </p>
-        <div class="flex flex-col md:flex-row gap-3 md:gap-0 md:border-2 md:border-[#e0e0e0] md:rounded-full overflow-hidden hover:border-[#7d1b6e] transition-colors md:focus-within:border-[#7d1b6e] md:focus-within:shadow-lg">
-          <input class="md:flex-1 py-2 px-4 md:px-5 rounded-full md:rounded-none border-2 md:border-none border-[#e0e0e0] focus-within:border-[#7d1b6e] focus-within:shadow-lg md:focus-within:shadow-none outline-none font-sans bg-white text-[#1a1a1a] placeholder:text-[#bbb]" type="email" placeholder="Email address">
-          <button class="bg-[#7d1b6e] border-none rounded-full md:rounded-none text-sm text-white py-3 px-5 md:px-6 font-sans font-bold tracking-widest uppercase cursor-pointer hover:bg-[#651659] transition-colors whitespace-nowrap">{{page_data.newsletter_signup_button_text}}</button>
+
+        <div id="mc_embed_signup">                                    
+          <form action="https://libraryfutures.us2.list-manage.com/subscribe/post?u=e46ce6c2905a00acf5c43debe&amp;id=2c035225f5&amp;f_id=00439fe3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+            <div class="flex flex-col md:flex-row gap-3 md:gap-0 md:border-2 md:border-[#e0e0e0] md:rounded-full overflow-hidden hover:border-[#7d1b6e] transition-colors md:focus-within:border-[#7d1b6e] md:focus-within:shadow-lg">
+              <input id="mce-EMAIL" type="email" name="EMAIL" placeholder="Email address"
+                  class="md:flex-1 py-2 px-4 md:px-5 rounded-full md:rounded-none border-2 md:border-none border-[#e0e0e0] focus-within:border-[#7d1b6e] focus-within:shadow-lg md:focus-within:shadow-none outline-none font-sans bg-white text-[#1a1a1a] placeholder:text-[#bbb]">
+              <input id="mc-embedded-subscribe" type="submit" name="subscribe" value="{{page_data.newsletter_signup_button_text}}" 
+                  class="bg-[#7d1b6e] border-none rounded-full md:rounded-none text-sm text-white py-3 px-5 md:px-6 font-sans font-bold tracking-widest uppercase cursor-pointer hover:bg-[#651659] transition-colors whitespace-nowrap">
+            </div>
+            <div id="mce-responses" class="clear">
+              <div class="response font-serif mt-4 leading-relaxed transition-opacity duration-600 opacity-100 starting:opacity-0" id="mce-error-response" style="display: none;"></div>
+              <div class="response font-serif mt-4 leading-relaxed transition-opacity duration-600 opacity-100 starting:opacity-0" id="mce-success-response" style="display: none;"></div>
+            </div>
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_e46ce6c2905a00acf5c43debe_2c035225f5" tabindex="-1" value=""></div>   
+          </form>
         </div>
+        <script type="text/javascript" src="https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script><script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='MMERGE6';ftypes[6]='text';fnames[7]='LGL_SAL';ftypes[7]='text';fnames[8]='LGL_ID';ftypes[8]='text';fnames[9]='MMERGE9';ftypes[9]='text';fnames[10]='MMERGE10';ftypes[10]='zip';fnames[12]='MMERGE12';ftypes[12]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
       </div>
       <div class="bg-gradient-to-br from-[#f8f8f8] to-white rounded-2xl p-6 md:p-8 flex flex-col justify-center gap-3 border border-[#e0e0e0]">
         <p class="font-sans text-lg font-bold tracking-wider uppercase text-[#7d1b6e] mb-1">{{ page_data.hero_card_title }}</p>
