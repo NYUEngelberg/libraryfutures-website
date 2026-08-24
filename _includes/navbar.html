@@ -16,7 +16,7 @@
         {% for nav in topNav %}
         {% if nav.children %}
           <li>
-            <details>
+            <details name="navbar-submenu">
               <summary>{{nav.title}}</summary>
               <ul class="bg-base-100 rounded-t-none p-2">
                 {% for subnav in nav.children %}
