@@ -47,8 +47,26 @@ extra_js:
       </div>
     </div>
     <div>
-      {% for news_item in news %}
-        {% include components/news-list-item.html item=news_item %} 
+      {% for post in news %}
+        {% assign post_url = post.pretty_url | prepend: '/publications/' | relative_url %}
+        <article class="py-3 md:pb-8">
+          <span class="hidden" data-author="all"></span>
+          {% for author in post.authors %}
+          <span class="hidden" data-author="{{author.display_name | slugify }}"></span>
+          {% endfor %}
+          <div class="mb-3">
+            <time class="font-sans font-bold tracking-wider uppercase text-[#999]">
+              {{ post.publication_date | date: "%B %d, %Y" }}
+            </time>
+          </div>
+          
+            <h2 class="font-sans font-black uppercase text-[18px] md:text-[20px] mb-3 leading-tight">
+              <a href="{{post_url}}" class="link">{{post.title}}</a>
+            </h2>
+          <p class="prose text-[#555] leading-relaxed mb-3">
+            {{post.short_description}}
+          </p>
+        </article>
       {% endfor %}
     </div>
   </section>
