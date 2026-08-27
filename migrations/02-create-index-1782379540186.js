@@ -1,7 +1,4 @@
 module.exports = function (migration) {
-  // Delete old index content type
-  migration.deleteContentType("index");
-
   const index = migration
     .createContentType("index")
     .name("Landing page")
@@ -585,6 +582,24 @@ module.exports = function (migration) {
     .disabled(false)
     .omitted(false);
   index
+    .createField("donateSectionTitle4")
+    .name("Donate section title 4")
+    .type("Symbol")
+    .localized(false)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+  index
+    .createField("donateSectionSubtext4")
+    .name("Donate section subtext 4")
+    .type("Symbol")
+    .localized(false)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+  index
     .createField("footerText")
     .name("Footer text")
     .type("Symbol")
@@ -615,15 +630,6 @@ module.exports = function (migration) {
       linkType: "Entry",
     });
 
-  index
-    .createField("footerLicense")
-    .name("Footer license")
-    .type("Symbol")
-    .localized(false)
-    .required(false)
-    .validations([])
-    .disabled(false)
-    .omitted(false);
   index
     .createField("footerCopyright")
     .name("Footer copyright")
@@ -756,9 +762,15 @@ module.exports = function (migration) {
     "singleLine",
     {}
   );
+  index.changeFieldControl("donateSectionTitle4", "builtin", "singleLine", {});
+  index.changeFieldControl(
+    "donateSectionSubtext4",
+    "builtin",
+    "singleLine",
+    {}
+  );
   index.changeFieldControl("footerText", "builtin", "singleLine", {});
   index.changeFieldControl("footerNav", "builtin", "entryLinksEditor", {});
-  index.changeFieldControl("footerLicense", "builtin", "singleLine", {});
   index.changeFieldControl("footerCopyright", "builtin", "singleLine", {});
   index.changeFieldControl(
     "footerEngelbergLinkText",
