@@ -1,0 +1,39 @@
+---
+layout: tailwind
+top_bar: gray
+---
+
+<main id="main" class="product-page">
+  <section class="grid md:grid-cols-[2fr_1fr] md:px-24 md:py-22 gap-8 lg:gap-16 px-6 py-4">
+    <div>
+      <h1 class="font-sans font-black capitalize text-4xl text-[#1a1a1a] mb-3" >{{ page.title }}</h1>
+      {% if page.subtitle %}
+        <div class="font-sans capitalize text-xl text-[#1a1a1a] mb-3">{{ page.subtitle }}</div>
+      {% endif %}
+      <div class="product__authors">{{ page.full_author | markdownify }}</div>
+      <div class="prose !max-w-none">
+        {{ page.introduction | markdownify }}
+      </div>
+    </div>
+    <img src="{{ page.cover_image.url }}" /> 
+  </section>
+
+  <section class="grid lg:grid-cols-[2fr_1fr] lg:px-24 lg:py-8 lg:gap-16 px-6 py-6">
+    <div class="prose !max-w-none">
+      {% if page.body %}
+        {{ page.body | rich_text_to_html }}
+      {% endif %}
+    </div>
+    <div class="flex flex-col gap-2">
+      {% if page.button_url %}
+        <a href="{{ page.button_url }}" class="btn btn-outline w-full">{{ page.button_text }}</a>
+      {% endif %}
+      {% if page.authors %}
+        <h3 class="text-2xl my-2">Authors</h3>
+        {% for item in page.authors %}
+          <a class="uppercase font-semibold link" href="{{ item.pretty_url | slugify | prepend: '/people/' | relative_url }}">{{ item.display_name }}</a>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </section>
+</main>

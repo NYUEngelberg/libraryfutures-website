@@ -1,0 +1,73 @@
+---
+layout: tailwind
+title: Publications
+description: All the latest research, education, advocacy, and news from Library Futures staff, fellows, interns and friends. Explore our current (and past) work on vendor accountability, library ebook licensing costs, copyright in the public interest, and more.
+extra_js:
+- /assets/js/blog.js
+---
+
+{% assign news = site.data.contentful.lf.product | sort: "publication_date" | reverse %}
+
+{% assign all_authors = "" | split: "" %} 
+{% assign all_publications = "" | split: "" %} 
+{% assign all_types = "" | split: "" %} 
+
+{% for item in news %} 
+  {% for author in item.authors %} 
+    {% assign all_authors = all_authors | push: author %} 
+  {% endfor %} 
+  {% assign all_publications = all_publications | push: item.publication %} 
+  {% assign all_types = all_types | push: item.publication_type %} 
+{% endfor %} 
+
+{% assign all_authors = all_authors | compact | sort: "last_name" | map: "display_name" | uniq %}
+{% assign all_publications = all_publications | uniq | compact | sort %} 
+{% assign all_types = all_types | uniq | compact | sort %}
+
+<main id="main" class="bg-white">
+  <section class="py-4 px-6  md:px-24 md:py-22 bg-gradient-to-br from-white via-[#f9f7fa] to-white">
+    <h1 class="font-sans text-2xl md:text-6xl font-semibold text-[#1a1a1a]" >{{ page.title }}</h1>
+    <p class="prose pt-6">Library Futures produces research, policy papers, case studies, and zines on digital equity issues in libraries. From the effects of current and emerging policy on digital rights to the opportunities and threats posed by digital access, our work educates libraries and library workers on how to advocate for equitable digital rights to better serve their communities. Our work encompasses our own research and advocacy, the outputs from our Research Network, and the work of our interns.</p>
+  </section>
+  <section class="py-4 px-6 md:px-24 md:py-8">
+    <div class="flex flex-col gap-4 md:gap-none md:flex-row md:justify-between pb-8">
+      <div>
+        <h3 class="text-4xl font-semibold text-[#1a1a1a]">Publications</h3>
+      </div>
+      <div>
+        <div class="dropdown-container">
+          <label class="sr-only" for="author-filter" aria-label="author">Authors</label>
+          <select id="author-select" class="dropdown" name="author" id="author-filter">
+            <option id="all-posts" value="all">All Authors</option>
+            {% for item in all_authors %}
+              <option id="{{ item | slugify }}" value="{{ item | slugify }}">{{ item }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+    <div>
+      {% for post in news %}
+        {% assign post_url = post.pretty_url | prepend: '/publications/' | relative_url %}
+        <article class="py-3 md:pb-8">
+          <span class="hidden" data-author="all"></span>
+          {% for author in post.authors %}
+          <span class="hidden" data-author="{{author.display_name | slugify }}"></span>
+          {% endfor %}
+          <div class="mb-3">
+            <time class="font-sans font-bold tracking-wider uppercase text-[#999]">
+              {{ post.publication_date | date: "%B %d, %Y" }}
+            </time>
+          </div>
+          
+            <h2 class="font-sans font-black uppercase text-[18px] md:text-[20px] mb-3 leading-tight">
+              <a href="{{post_url}}" class="link">{{post.title}}</a>
+            </h2>
+          <p class="prose text-[#555] leading-relaxed mb-3">
+            {{post.short_description}}
+          </p>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+</main>

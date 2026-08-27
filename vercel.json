@@ -1,4 +1,43 @@
 {
-	"devCommand": "bundle exec jekyll contentful && gulp",
-	"installCommand": "bundle install && npm install"
+    "buildCommand": "bundle exec jekyll contentful && bundle exec jekyll build --trace",
+    "devCommand": "bundle exec jekyll contentful && bundle exec jekyll serve",
+    "installCommand": "bundle install && npm ci",
+    "redirects": [
+        {
+            "source": "/staff/:path+",
+            "destination": "/people/:path+"
+        },
+        {
+            "source": "/interns/:path+",
+            "destination": "/people/:path+"
+        },
+        {
+            "source": "/fellows/:path+",
+            "destination": "/people/:path+"
+        },
+        {
+            "source": "/engelberg/:path+",
+            "destination": "/people/:path+"
+        },
+        {
+            "source": "/student-fellows/:path+",
+            "destination": "/people/:path+"
+        },
+        {
+            "source": "/blog/:path+",
+            "destination": "/post/:path+"
+        },
+        {
+            "source": "/know-your-rights",
+            "destination": "/publications/know-your-rights"
+        },
+        {
+            "source": "/post/neo-censorship-in-u-s-libraries",
+            "destination": "/post/new-research-report-neo-censorship-in-u-s-libraries"
+        },
+        {
+            "source": "/post/improving-digital-access-to-local-news-through-library-newsroom-collaboration",
+            "destination": "/post/first-insights-report-albany-public-library-news-access-pilot-project"
+        }
+    ]
 }

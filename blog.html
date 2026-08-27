@@ -1,0 +1,58 @@
+---
+layout: tailwind
+title: Library Futures Blog
+description: All the latest research, education, advocacy, and news from Library Futures staff, fellows, interns and friends. Explore our current (and past) work on vendor accountability, library ebook licensing costs, copyright in the public interest, and more.
+extra_js:
+- /assets/js/blog.js
+---
+
+{% assign news = site.data.contentful.lf.news | sort: "publication_date" | reverse %}
+
+{% assign all_authors = "" | split: "" %} 
+{% assign all_publications = "" | split: "" %} 
+{% assign all_types = "" | split: "" %} 
+
+{% for item in news %} 
+  {% for author in item.authors %} 
+    {% assign all_authors = all_authors | push: author %} 
+  {% endfor %} 
+  {% assign all_publications = all_publications | push: item.publication %} 
+  {% assign all_types = all_types | push: item.publication_type %} 
+{% endfor %} 
+
+{% assign all_authors = all_authors | compact | sort: "last_name" | map: "display_name" | uniq %}
+{% assign all_publications = all_publications | uniq | compact | sort %} 
+{% assign all_types = all_types | uniq | compact | sort %}
+
+<main id="main" class="bg-white">
+  <section class="py-4 px-6  md:px-24 md:py-22 bg-gradient-to-br from-white via-[#f9f7fa] to-white">
+    <div class="column large-offset-2">
+      <h1 class="font-sans text-2xl md:text-6xl font-semibold text-[#1a1a1a]" >{{ page.title }}</h1>
+
+      {% include components/mobile-list-results.html class_name="engelberg-center-news-filter" %}
+    </div>
+  </section>
+  <div class="py-4 px-6 md:px-24 md:py-8">
+    <div class="flex flex-col gap-4 md:gap-none md:flex-row md:justify-between pb-8">
+      <div>
+        <h3 class="text-4xl font-semibold text-[#1a1a1a]">Posts</h3>
+      </div>
+      <div>
+        <div class="dropdown-container">
+          <label class="sr-only" for="author-filter" aria-label="author">Authors</label>
+          <select id="author-select" class="dropdown" name="author" id="author-filter">
+            <option id="all-posts" value="all">All Authors</option>
+            {% for item in all_authors %}
+              <option id="{{ item | slugify }}" value="{{ item | slugify }}">{{ item }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+    <div>
+      {% for news_item in news %}
+        {% include components/news-list-item.html item=news_item %} 
+      {% endfor %}
+    </div>
+  </div>
+</main>

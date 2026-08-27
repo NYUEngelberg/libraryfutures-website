@@ -1,0 +1,292 @@
+---
+layout: tailwind
+---
+
+{% assign page_data = site.data.contentful.index.index | first %}
+
+<!-- HERO -->
+<div class="relative px-6 md:py-22 md:px-24 pt-8 md:pt-16 pb-8 md:pb-12 bg-gradient-to-br from-white via-[#faf9fb] to-white overflow-hidden">
+  <div class="absolute top-0 right-0 w-64 h-64 bg-[#7d1b6e]/5 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 left-0 w-48 h-48 bg-[#7d1b6e]/3 rounded-full blur-3xl"></div>
+  <div class="relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 lg:gap-12 items-start mb-8 lg:mb-10">
+      <div>
+        <div class="inline-block mb-4 md:mb-6">
+          <div class="font-sans text-xs/5 font-bold tracking-[0.14em] uppercase text-white bg-[#57068c] px-3 md:px-4 py-1.5 md:py-2">
+            {{ page_data.hero_badge }}
+          </div>
+        </div>
+        <h1 class="font-sans font-black uppercase leading-[0.9] mb-4 md:mb-6">
+          {% assign tagline = page_data.hero_heading | split: " " %}
+
+          <span class="block text-[32px] md:text-[52px] text-[#7d1b6e] relative inline-block">{{ tagline | slice: 0, 3 | join: " " }}</span>
+          <span class="my-1 md:my-0 block w-20 md:w-32 h-2 md:h-2 bg-gradient-to-r from-[#7d1b6e] to-transparent"></span>
+          <span class="block text-[32px] md:text-[52px] text-[#1a1a1a]">{{ tagline | slice: 3, 10 | join: " " }}</span>
+        </h1>
+        <div id="hero-body">
+          {{ page_data.hero_body | rich_text }}
+        </div>
+      </div>
+      <div class="mt-2 md:mt-4 bg-white rounded-2xl p-3 md:p-4 shadow-xl border border-[#e0e0e0] max-w-md mx-auto lg:max-w-none">
+        <img src="{{ page_data.hero_image.url }}" alt="{{ page_data.hero_image.description }}" class="w-full lg:w-[320px] h-auto rounded-lg">
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr] gap-4 md:gap-6 mt-8 md:mt-12">
+      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-[#e0e0e0]">
+        <p class="font-sans text-lg font-bold tracking-wider uppercase text-[#7d1b6e] mb-3">
+          {{page_data.newsletter_signup_title}}
+        </p>
+        <p class="font-serif text-[#444] mb-4 leading-relaxed">
+          {{page_data.newsletter_signup_text}}
+        </p>
+
+        <div id="mc_embed_signup">                                    
+          <form action="https://libraryfutures.us2.list-manage.com/subscribe/post?u=e46ce6c2905a00acf5c43debe&amp;id=2c035225f5&amp;f_id=00439fe3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+            <div class="flex flex-col md:flex-row gap-3 md:gap-0 md:border-2 md:border-[#e0e0e0] md:rounded-full overflow-hidden hover:border-[#7d1b6e] transition-colors md:focus-within:border-[#7d1b6e] md:focus-within:shadow-lg">
+              <input id="mce-EMAIL" type="email" name="EMAIL" placeholder="Email address"
+                  class="md:flex-1 py-2 px-4 md:px-5 rounded-full md:rounded-none border-2 md:border-none border-[#e0e0e0] focus-within:border-[#7d1b6e] focus-within:shadow-lg md:focus-within:shadow-none outline-none font-sans bg-white text-[#1a1a1a] placeholder:text-[#bbb]">
+              <input id="mc-embedded-subscribe" type="submit" name="subscribe" value="{{page_data.newsletter_signup_button_text}}" 
+                  class="bg-[#7d1b6e] border-none rounded-full md:rounded-none text-sm text-white py-3 px-5 md:px-6 font-sans font-bold tracking-widest uppercase cursor-pointer hover:bg-[#651659] transition-colors whitespace-nowrap">
+            </div>
+            <div id="mce-responses" class="clear">
+              <div class="response font-serif mt-4 leading-relaxed transition-opacity duration-600 opacity-100 starting:opacity-0" id="mce-error-response" style="display: none;"></div>
+              <div class="response font-serif mt-4 leading-relaxed transition-opacity duration-600 opacity-100 starting:opacity-0" id="mce-success-response" style="display: none;"></div>
+            </div>
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_e46ce6c2905a00acf5c43debe_2c035225f5" tabindex="-1" value=""></div>   
+          </form>
+        </div>
+        <script type="text/javascript" src="https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script><script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='MMERGE6';ftypes[6]='text';fnames[7]='LGL_SAL';ftypes[7]='text';fnames[8]='LGL_ID';ftypes[8]='text';fnames[9]='MMERGE9';ftypes[9]='text';fnames[10]='MMERGE10';ftypes[10]='zip';fnames[12]='MMERGE12';ftypes[12]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+      </div>
+      <div class="bg-gradient-to-br from-[#f8f8f8] to-white rounded-2xl p-6 md:p-8 flex flex-col justify-center gap-3 border border-[#e0e0e0]">
+        <p class="font-sans text-lg font-bold tracking-wider uppercase text-[#7d1b6e] mb-1">{{ page_data.hero_card_title }}</p>
+        <a href="{{ page_data.hero_card_link1_link }}" class="font-sans text-sm font-bold tracking-wider uppercase border-2 border-[#7d1b6e] rounded-full bg-[#7d1b6e] text-white py-3 px-6 cursor-pointer hover:bg-[#651659] hover:border-[#651659] transition-all transform hover:scale-105 text-left">{{ page_data.hero_card_link1_text }} →</a>
+        <a href="{{ page_data.hero_card_link2_link }}" class="font-sans text-sm font-bold tracking-wider uppercase border-2 border-[#1a1a1a] rounded-full bg-white py-3 px-6 cursor-pointer text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-all transform hover:scale-105 text-left">
+           {{ page_data.hero_card_link2_text }} →
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- About section -->
+<div class="py-4 px-6 md:py-8 md:px-24 md:pt-12 bg-gradient-to-b from-white to-[#fafafa]">
+  <div class="flex items-end justify-between mb-6 md:mb-8">
+    <div>
+      <div class="font-sans text-sm font-bold tracking-[0.14em] uppercase text-[#aaa] mb-2">{{page_data.about_subtitle}}</div>
+      <h2 class="font-sans text-2xl md:text-3xl font-black uppercase text-[#1a1a1a]">{{page_data.about_title}}</h2>
+    </div>
+    <div class=
+    "w-12 md:w-16 h-1 bg-gradient-to-r from-[#7d1b6e] to-transparent">
+    </div>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+    <div class="bg-white border-2 border-[#7d1b6e] rounded-2xl p-6 md:p-8 hover:shadow-xl transition-all transform hover:-translate-y-1">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-full bg-[#7d1b6e] flex items-center justify-center flex-shrink-0">
+          {{ page_data.about_left_card_icon }}
+        </div>
+        <h3 class="font-sans text-lg font-black uppercase text-[#7d1b6e] tracking-wide">{{page_data.about_left_card_title}}</h3>
+      </div>
+      <div class="space-y-5 about-card-text">
+        {{ page_data.about_left_card_text | rich_text }}
+      </div>
+    </div>
+    <div class="bg-gradient-to-br from-[#7d1b6e] to-[#651659] rounded-2xl p-6 md:p-8 text-white hover:shadow-xl transition-all transform hover:-translate-y-1">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+          {{ page_data.about_right_card_icon }}
+        </div>
+        <h3 class="font-sans text-lg font-black uppercase tracking-wide">
+          {{ page_data.about_right_card_title }}
+        </h3>
+      </div>
+      <div class="space-y-5 about-card-text">
+        {{ page_data.about_right_card_text | rich_text }}
+      </div>
+    </div>
+  </div>
+  <div class="mt-4 md:mt-6 flex justify-center">
+    <a class="font-sans text-sm font-bold tracking-wider uppercase border-[1.5px] border-[#1a1a1a] rounded-full bg-white py-2 px-6 cursor-pointer text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-colors" href="{{page_data.about_section_button_link}}">
+      {{page_data.about_section_button_text}} →
+    </a>
+  </div>
+</div>
+
+
+<!-- Updates section -->
+<div class="py-4 px-6 md:py-8 md:px-24 bg-gradient-to-b from-white to-[#fafafa]">
+  <div class="flex items-end justify-between mb-6 md:mb-8">
+    <div>
+      <div class="font-sans text-sm font-bold tracking-[0.14em] uppercase text-[#aaa] mb-2">{{page_data.updates_subtitle}}</div>
+      <h2 class="font-sans text-2xl md:text-3xl font-black uppercase text-[#1a1a1a]">
+        {{page_data.updates_title}}
+      </h2>
+    </div>
+    <div class=
+    "w-12 md:w-16 h-1 bg-gradient-to-r from-[#7d1b6e] to-transparent">
+    </div>
+  </div>
+
+  {% assign updates = site.data.contentful.lf.news %}
+  <!-- TODO if we add other content models we need to figure out sorting -->
+  {% assign updates_sorted = updates | sort: "publication_date" | reverse %}
+  {% assign card = updates_sorted | first %}
+  <!-- TODO if we add events we need to distinguish display -->
+  <!-- TODO product -> publication -->
+  <div class="mb-4 md:mb-6 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 border border-[#e0e0e0]">
+    <div class="grid grid-cols-1 md:grid-cols-[2fr_3fr] lg:grid-cols-[1fr_3fr]">
+      <div class="bg-[#f3eaf2] border-[1.5px] border-dashed border-[#c9a8c4] rounded-lg flex items-end justify-center min-h-[200px] md:min-h-[280px]">
+        {% assign image = card.column_images | first %}
+        <img class="w-full h-full object-cover" src={{image.url}} alt="{{image.description}}" />
+      </div>
+      <div class="p-6 md:p-10 flex flex-col justify-center">
+        <div class="inline-block"><span class="font-sans text-[12px] font-bold tracking-[0.12em] uppercase text-white bg-[#7d1b6e] px-3 py-1.5">{{card.sys.content_type_id}}</span></div>
+        <h2 class="text-xl md:text-3xl font-semibold text-[#1a1a1a] leading-tight mt-3 md:mt-4 mb-2 md:mb-3 cursor-pointer hover:text-[#7d1b6e] transition-colors">
+          {{ card.title }}</h2>
+        <div class="font-sans text-[12px] font-bold tracking-widest uppercase text-[#aaa] mb-4">
+          {{ card.publication_date | date: "%b %d, %Y" }}
+        </div>
+        <div class="font-serif mb-4 md:mb-6">
+          <p>{{ card.short_description }}</p>
+        </div>
+        <div>
+          {% assign post_url = card.pretty_url | prepend: '/post/' | relative_url %}
+          <a href="{{post_url}}" class="font-sans text-[12px] md:text-[16px] font-bold tracking-wider uppercase bg-[#1a1a1a] text-white rounded-full py-2.5 md:py-3 px-5 md:px-6 cursor-pointer hover:bg-[#7d1b6e] transition-colors">Read more →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    {% for card in updates_sorted offset:1 limit:3 %} 
+      {% assign post_url = card.pretty_url | prepend: '/post/' | relative_url %}
+        <div class="border-2 border-[#e0e0e0] rounded-xl overflow-hidden bg-white hover:border-[#7d1b6e] hover:shadow-lg group h-full transform translate-y-0 hover:-translate-y-2 transition-all md:relative">
+          <figure class="bg-[#f3eaf2] border-[1.5px] border-dashed border-[#c9a8c4] rounded-lg flex items-end justify-center aspect-16/9">
+            {% assign image = card.column_images | first %}
+            <img class="w-full h-full object-cover" src={{image.url}} alt="{{image.description}}" />
+          </figure>
+          <div class="p-5">
+            <span class="inline-block font-sans text-[12px] font-bold tracking-[0.12em] uppercase text-[#7d1b6e] bg-[#f3e8f1] px-2.5 py-1 mb-3">
+              {{card.sys.content_type_id}}
+            </span>
+            <h3 class="font-semibold leading-tight text-lg text-[#1a1a1a] mb-3 group-hover:text-[#7d1b6e] transition-colors">{{card.title}}</h3>
+            <div class="font-sans text-[12px] font-bold tracking-widest uppercase text-[#aaa] mb-3">
+              {{card.publication_date | date:"%b %d, %Y"}}
+            </div>
+            <div class="mb-4 md:mb-0">
+              <p class="font-serif">{{card.short_description}}</p>
+            </div>
+            <a href="{{post_url}}" class="md:sr-only font-sans text-[12px] md:text-[16px] font-bold tracking-wider uppercase bg-[#1a1a1a] text-white rounded-full py-2.5 px-5 cursor-pointer hover:bg-[#7d1b6e] transition-colors">Read more →</a>
+          </div>
+          <a href="{{post_url}}" class="hidden md:block absolute top-0 left-0 h-full w-full"> </a>
+        </div>
+    {% endfor %}
+  </div>
+  <div class="mt-6 md:mt-8 flex flex-col sm:flex-row justify-center gap-3">
+    <a href="{{site.baseurl}}/blog" class="font-sans text-sm font-bold tracking-wider uppercase border-[1.5px] border-[#1a1a1a] rounded-full bg-white py-2.5 px-6 cursor-pointer text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-colors">
+      {{page_data.updates_section_post_link_text}} →
+    </a>
+    <a href="{{site.baseurl}}/events" class="font-sans text-sm font-bold tracking-wider uppercase border-[1.5px] border-[#7d1b6e] rounded-full bg-[#7d1b6e] text-white py-2.5 px-6 cursor-pointer hover:bg-[#651659] transition-colors">
+      {{page_data.updates_section_event_link_text}} →
+    </a>
+  </div>
+</div>
+
+<!-- Featured section -->
+<div class="py-4 px-6 md:py-8 md:px-24 bg-white">
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <div class="font-sans text-sm font-bold tracking-[0.14em] uppercase text-[#aaa] mb-2">
+        {{page_data.featured_subtitle}}</div>
+      <h2 class="font-sans text-2xl md:text-2xl font-black uppercase text-[#1a1a1a]">
+        {{page_data.featured_title}}
+      </h2>
+    </div>
+    <a href="{{page_data.featured_section_link_url}}" class="button hidden sm:block font-sans text-sm font-bold tracking-wider uppercase border-[1.5px] border-[#1a1a1a] rounded-full bg-white py-2 px-5 cursor-pointer text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-colors">{{page_data.featured_section_link_text}} →</a>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {% for card in page_data.featured_cards limit:4 %}
+      {% case card.sys.content_type_id %}
+        {% when "publication" %}
+          {% assign tag="Publication" %}
+          {% assign card_url = card.pretty_url | prepend: '/publications/' | relative_url %}
+          {% assign image = card.cover_image %}
+          {% assign card_date = card.publication_date %}
+          {% assign short_description = card.short_description %}
+        {% when "news" %}
+          {% assign tag="Blog" %}
+          {% assign card_url = card.pretty_url | prepend: '/post/' | relative_url %}
+          {% assign image = card.column_images | first %}
+          {% assign card_date = card.publication_date %}
+          {% assign short_description = card.short_description %}
+        {% when "event" %}
+          {% assign tag="Event" %}
+          {% if card.external_url and card.external_url.size != 0 %}
+            {% assign card_url = card.external_url %}
+          {% else %}
+            {% assign card_url = card.pretty_url | prepend: '/events/' | relative_url %}
+          {% endif %}
+          {% assign image = card.featured_image %}
+          {% assign card_date = card.event_start %}
+          {% assign short_description = card.short_description %}
+        {% else %}
+          {% assign tag="" %}
+      {% endcase %}
+      <div class="relative transform translate-y-0 hover:-translate-y-2 transition-all">
+        <div class="border-2 border-[#e0e0e0] rounded-xl overflow-hidden bg-white hover:border-[#7d1b6e] hover:shadow-lg transition-all group h-full">
+          <figure class="bg-[#f3eaf2] border-[1.5px] border-dashed border-[#c9a8c4] rounded-lg flex items-end justify-center aspect-16/9 overflow-hidden">
+            <img src="{{image.url}}" alt="{{image.description}}" />
+          </figure>
+          <div class="p-5">
+            <span class="inline-block font-sans text-[12px] font-bold tracking-[0.12em] uppercase text-[#7d1b6e] bg-[#f3e8f1] px-2.5 py-1 mb-3">
+              {{tag}}</span>
+            <h3 class="font-sans text-lg font-bold leading-tight text-[#1a1a1a] mb-3 group-hover:text-[#7d1b6e] transition-colors">{{card.title}}</h3>
+            <div class="font-sans text-[12px] font-bold tracking-widest uppercase text-[#aaa] mb-3">
+              {{card_date | date:"%b %d, %Y"}}
+            </div>
+            <div class="mb-4 md:mb-0">
+              <p class="font-serif">{{short_description}}</p>
+            </div>
+            <a href="{{card_url}}" class="md:sr-only font-sans text-[12px] md:text-[16px] font-bold tracking-wider uppercase bg-[#1a1a1a] text-white rounded-full py-2.5 px-5 cursor-pointer hover:bg-[#7d1b6e] transition-colors">Read more →</a>
+          </div>
+        </div>
+        <a href="{{card_url}}" class="hidden md:block absolute top-0 left-0 h-full w-full">
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- DONATE -->
+<div class="relative py-4 px-6 md:py-8 md:px-24 bg-gradient-to-br from-[#7d1b6e] via-[#6d1a5f] to-[#57068c] overflow-hidden">
+  <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40"></div>
+  <div class="absolute top-10 right-20 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+  <div class="absolute bottom-10 left-20 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
+  <div class="relative z-10 max-w-4xl mx-auto">
+    <div class="text-center mb-10">
+      <div class="inline-block mb-4">
+        <svg class="w-16 h-16 mx-auto text-white/80" fill="none" stroke="currentcolor" viewbox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path></svg>
+      </div>
+      <h2 class="font-sans text-3xl md:text-4xl font-black uppercase text-white tracking-wider mb-4 md:mb-5">{{page_data.donate_section_title}}</h2>
+      <div class="font-serif text-base md:text-lg leading-relaxed text-white/95 max-w-2xl mx-auto mb-6 md:mb-8">{{page_data.donate_section_text | rich_text }}</div>
+      <a href="{{site.baseurl}}/donate" class="font-sans text-sm font-bold tracking-wider uppercase border-2 border-white rounded-full bg-white text-[#7d1b6e] py-4 px-10 cursor-pointer hover:bg-transparent hover:text-white transition-all transform hover:scale-110 shadow-2xl hover:shadow-white/20">{{page_data.donate_button_text}} →</a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-4 mt-8 md:mt-12 pt-6 md:pt-8 md:border-t border-white/20">
+      <div class="text-center pb-4 md:pb-0">
+        <div class="font-sans text-3xl font-black text-white mb-1">{{page_data.donate_section_title1}}</div>
+        <div class="font-sans text-sm tracking-wider uppercase text-white/70">{{page_data.donate_section_subtext1}}</div>
+      </div>
+      <div class="text-center border-y md:border-y-0 md:border-x border-white/20 py-4 md:py-0">
+        <div class="font-sans text-3xl font-black text-white mb-1">{{page_data.donate_section_title2}}</div>
+        <div class="font-sans text-sm tracking-wider uppercase text-white/70">{{page_data.donate_section_subtext2}}</div>
+      </div>
+      <div class="text-center border-b md:border-b-0 md:border-r border-white/20 py-4 md:py-0">
+        <div class="font-sans text-3xl font-black text-white mb-1">{{page_data.donate_section_title3}}</div>
+        <div class="font-sans text-sm tracking-wider uppercase text-white/70">{{page_data.donate_section_subtext3}}</div>
+      </div>
+      <div class="text-center pt-4 md:pt-0">
+        <div class="font-sans text-3xl font-black text-white mb-1">{{page_data.donate_section_title4}}</div>
+        <div class="font-sans text-sm tracking-wider uppercase text-white/70">{{page_data.donate_section_subtext4}}</div>
+      </div>
+    </div>
+  </div>
+</div>

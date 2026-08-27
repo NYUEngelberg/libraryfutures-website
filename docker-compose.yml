@@ -1,0 +1,26 @@
+services:
+  jekyll:
+    image: local/jekyll
+    build: .
+    user: 1000:1000
+    working_dir: /opt/app
+    ports:
+    - 127.0.0.1:4000:4000
+    volumes:
+    - .:/opt/app
+    - .bundler:/opt/bundler
+    environment:
+    - BUNDLE_PATH=/opt/bundler
+    - JEKYLL_ENV=development
+    env_file: .dockerenv
+    command: bash -c "bundle install && bundle exec jekyll serve -H 0.0.0.0 --watch --trace"
+  #frontend:
+  #  image: node:22
+  #  ports:
+  #  - 127.0.0.1:5173:5173
+  #  volumes:
+  #    - .:/opt/app
+  #  working_dir: /opt/app
+  #  user: 1000:1000
+  #  command: npm run dev
+

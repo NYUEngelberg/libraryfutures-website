@@ -1,0 +1,28 @@
+---
+layout: tailwind
+---
+
+<main id="main" class="announcement-page">
+  <div class="py-4 px-6 md:py-22 md:px-24 grid md:grid-cols-[1fr_2fr] gap-8 md:gap-16">
+    <div>
+      <div>{{ page.publication_date | date: "%B %d, %Y" }}</div>
+      <h1 class="text-4xl font-semibold capitalize my-2">{{ page.title }}</h1>
+      {% for author in page.authors %}
+        <div>
+          <a href="{{ author.pretty_url | prepend: '/people/' | relative_url }}" class="link link--arrow">
+            {{author.display_name}}
+          </a>
+        </div>
+      {% endfor %}
+      <span class="block my-8 w-20 md:w-32 h-2 md:h-2 bg-gradient-to-r from-[#7d1b6e] to-transparent"></span>
+      <div class="flex flex-col gap-8">
+        {% for image in page.column_images %}
+          <img src="{{image.url}}" alt="{{image.url.description}}">
+        {% endfor %}
+      </div>
+    </div>
+    <article class="prose">
+      {{ page.body  | markdownify }}
+    </article>
+  </div>
+</main>
