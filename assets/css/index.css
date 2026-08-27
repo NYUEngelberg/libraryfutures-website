@@ -1,9 +1,18 @@
 ---
 ---
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 @plugin "@tailwindcss/typography";
 @plugin "daisyui"{
   logs: false;
+  themes: light --default;
+}
+
+
+@theme {
+  --color-purple-1: #7d1b6e;
+  --color-purple-2: #57068c;
+  --text-base: 18px;
 }
 
 @layer base {
@@ -12,11 +21,6 @@
   }
 }
 
-@theme {
-    --color-purple-1: #7d1b6e;
-    --color-purple-2: #57068c;
-    --text-base: 18px;
-}
 
 /*
 @plugin "daisyui/theme" {
