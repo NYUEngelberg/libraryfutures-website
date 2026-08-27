@@ -1,4 +1,8 @@
 module.exports = function (migration) {
+
+  // Delete old index content type
+  migration.deleteContentType("index");
+
   const index = migration
     .createContentType("index")
     .name("Landing page")
