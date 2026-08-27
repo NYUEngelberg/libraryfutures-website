@@ -19,6 +19,7 @@ contentful:
         client_options:
           max_include_resolution_depth: 2
           reuse_entries: false
+          api_url: ENV_CONTENTFUL_API_URL
         rich_text_mappings:
           embedded-entry-block: EmbeddedEntryBlockRenderer
           embedded-asset-block: EmbeddedAssetBlockRenderer
@@ -32,6 +33,7 @@ contentful:
         cda_query:
           content_type: index
         client_options:
+          api_url: ENV_CONTENTFUL_API_URL
           reuse_entries: false
         rich_text_mappings:
           embedded-entry-block: EmbeddedEntryBlockRenderer
@@ -46,6 +48,7 @@ contentful:
         cda_query:
           content_type: navigation
         client_options:
+          api_url: ENV_CONTENTFUL_API_URL
           max_include_resolution_depth: 5
           reuse_entries: false
         rich_text_mappings:
