@@ -10,6 +10,7 @@ group :jekyll_plugins do
   gem "jekyll-seo-tag"
   gem "jekyll-sitemap"
   gem "jekyll-contentful-data-import"
+  gem 'jekyll-redirect-from'
 end
 
 gem 'jekyll-postcss-v2'

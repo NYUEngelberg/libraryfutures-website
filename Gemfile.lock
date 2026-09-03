@@ -329,6 +329,7 @@ DEPENDENCIES
   github-pages
   jekyll-contentful-data-import
   jekyll-postcss-v2
+  jekyll-redirect-from
   jekyll-seo-tag
   jekyll-sitemap
   webrick
