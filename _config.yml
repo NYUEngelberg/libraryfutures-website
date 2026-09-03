@@ -79,7 +79,7 @@ page_gen:
     name: 'pretty_url'
     dir: 'events'
     customSeoImage: 'seo_image'
-  - data: 'data.contentful.lf.publication'
+  - data: 'data.contentful.lf.product'
     template: 'publication'
     name: 'pretty_url'
     dir: 'publications'
