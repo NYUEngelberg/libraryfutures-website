@@ -1,11 +1,4 @@
----
-layout: tailwind
-title: Publications
-description: All the latest research, education, advocacy, and news from Library Futures staff, fellows, interns and friends. Explore our current (and past) work on vendor accountability, library ebook licensing costs, copyright in the public interest, and more.
-extra_js:
-- /assets/js/blog.js
----
-
+{% assign page_data = site.data.contentful.lf.genericPage | where: "pretty_url", "publications" | first %}
 {% assign news = site.data.contentful.lf.product | sort: "publication_date" | reverse %}
 
 {% assign all_authors = "" | split: "" %} 
@@ -26,8 +19,8 @@ extra_js:
 
 <main id="main" class="bg-white">
   <section class="py-4 px-6  md:px-24 md:py-22 bg-gradient-to-br from-white via-[#f9f7fa] to-white">
-    <h1 class="font-sans text-2xl md:text-6xl font-semibold text-[#1a1a1a]" >{{ page.title }}</h1>
-    <p class="prose pt-6">Library Futures produces research, policy papers, case studies, and zines on digital equity issues in libraries. From the effects of current and emerging policy on digital rights to the opportunities and threats posed by digital access, our work educates libraries and library workers on how to advocate for equitable digital rights to better serve their communities. Our work encompasses our own research and advocacy, the outputs from our Research Network, and the work of our interns.</p>
+    <h1 class="text-5xl md:text-6xl font-semibold capitalize">{{ page_data.title }}</h1>
+    <div class="prose !max-w-none pt-6">{{page_data.introduction | markdownify }}</div>
   </section>
   <section class="py-4 px-6 md:px-24 md:py-8">
     <div class="flex flex-col gap-4 md:gap-none md:flex-row md:justify-between pb-8">

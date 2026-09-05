@@ -12,6 +12,8 @@ window.addEventListener('load', e => {
     }
   }
   const select = document.getElementById('author-select')
-  select.addEventListener('change', onFilter);
+  if (select){
+    select.addEventListener('change', onFilter);
+  }
 
 })

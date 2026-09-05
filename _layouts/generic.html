@@ -1,10 +1,17 @@
 ---
 layout: tailwind
+extra_js:
+- /assets/js/blog.js
 ---
+
 {% assign page_data = page %}
 
 {% if page.pretty_url == 'who-we-are' %}
   {% include who-we-are.html %}
+{% elsif page.pretty_url == 'publications' %}
+  {% include publications.html %}
+{% elsif page.pretty_url == 'blog' %}
+  {% include blog.html %}
 {% else %}
 
 <main>
