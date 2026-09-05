@@ -31,7 +31,13 @@ top_bar: gray
       {% if page.authors %}
         <h3 class="text-2xl my-2">Authors</h3>
         {% for item in page.authors %}
-          <a class="uppercase font-semibold link" href="{{ item.pretty_url | slugify | prepend: '/people/' | relative_url }}">{{ item.display_name }}</a>
+          {% if item.pretty_url == 'library-futures' %}
+            {% assign profile_url = '/' %}
+          {% else %}
+            {% assign profile_url = item.pretty_url | slugify | prepend: '/people/' | relative_url %}
+          {% endif %}
+
+          <a class="uppercase font-semibold link" href="{{ profile_url }}">{{ item.display_name }}</a>
         {% endfor %}
       {% endif %}
     </div>
