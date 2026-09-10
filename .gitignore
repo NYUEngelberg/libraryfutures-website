@@ -3,3 +3,5 @@
 _site
 node_modules
 *.swp
+_data/contentful/
+.DS_Store
