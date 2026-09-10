@@ -1,5 +1,5 @@
 {
-    "buildCommand": "jekyll-build.sh",
+    "buildCommand": "bash jekyll-build.sh",
     "devCommand": "bundle exec jekyll contentful && bundle exec jekyll serve",
     "installCommand": "bundle install && npm ci",
     "redirects": [
