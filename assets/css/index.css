@@ -1,0 +1,130 @@
+---
+---
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@plugin "@tailwindcss/typography";
+@plugin "daisyui"{
+  logs: false;
+  themes: light --default;
+}
+
+@theme {
+  --color-purple-1: #7d1b6e;
+  --color-purple-2: #57068c;
+  --text-base: 18px;
+}
+
+@layer base {
+  body {
+    font-size: 18px;
+  }
+}
+
+nav a, nav summary {
+  @apply font-sans;
+  @apply uppercase;
+  /*@apply text-[12px];*/
+  @apply font-bold;
+  @apply tracking-wider;
+  @apply text-[#1a1a1a];
+  @apply py-[18px];
+  @apply px-3.5;
+  @apply cursor-pointer;
+  @apply whitespace-nowrap;
+  @apply hover:text-[#7d1b6e];
+  @apply transition-colors;
+  @apply bg-transparent;
+  @apply border-none;
+}
+
+nav details > ul {
+    z-index: 9999;
+}
+
+@utility btn-outline {
+  @apply tracking-wider;
+  @apply border-[1.5px];
+  @apply border-[#1a1a1a];
+  @apply border-solid;
+  @apply bg-white;
+  @apply text-[#1a1a1a];
+  @apply hover:bg-[#1a1a1a];
+  @apply hover:text-white;
+}
+
+@utility btn {
+  @apply rounded-full;
+  @apply font-sans;
+  @apply uppercase;
+  @apply font-bold;
+  @apply text-white;
+  @apply bg-[#7d1b6e];
+  @apply border-none;
+  @apply text-[14px];
+  @apply tracking-wider;
+  @apply py-2 px-[18px];
+  @apply cursor-pointer;
+  @apply hover:bg-[#651659];
+  @apply transition-colors;
+}
+
+
+#hero-body {
+ p:first-child {
+   @apply font-serif;
+   @apply text-base;
+   @apply md:text-xl;
+   @apply leading-relaxed;
+   @apply text-[#1a1a1a];
+   @apply max-w-[580px];
+   @apply mb-3;
+   @apply md:mb-4;
+   @apply border-l-4;
+   @apply border-[#7d1b6e];
+   @apply pl-4;
+   @apply md:pl-6;
+ }
+}
+
+.about-card-text, .prose {
+  h1 {
+    @apply font-bold;
+    @apply mb-1.5;
+  }
+  h1, h2, h3, h4 {
+    @apply font-sans;
+  }
+  @apply font-serif;
+}
+
+@layer utilities {
+  .prose {
+    @apply text-base;
+    @apply font-serif;
+    & :where(table) {
+        @apply text-base;
+    }
+    max-width: none; /* !max-w-none not needed anymore */
+
+    blockquote {
+        p {
+          &:first-of-type::before { content: none; }
+          &:last-of-type::after { content: none; }
+        }
+    }
+
+    .button {
+      @apply btn;
+      @apply btn-outline;
+    }
+  }
+}
+
+a.link {
+  @apply underline;
+}
+
+a.link:hover, .prose a:not(.button):hover {
+  color: #7d1b6e;
+  transition: color 0.1s ease-in-out;
+}

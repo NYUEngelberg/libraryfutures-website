@@ -1,0 +1,36 @@
+---
+layout: tailwind
+---
+
+<main id="main" class="event-page">
+  <div class="md:px-24 md:py-22 md:gap-16 px-6 py-4 grid md:grid-cols-2 md:grid-cols-[7fr_4fr] gap-5">
+    <div>
+      <div>{{ page.event_start | date: "%B %d, %Y" }}</div>
+      <h1 class="text-4xl font-semibold font-sans mb-6">{{ page.title }}</h1>
+      <div class="prose">
+        {{ page.long_description | strip_html | markdownify }}
+      </div>
+      <div class="bar" style="background-image: url('/images/bar-p.svg')"></div>
+    </div>
+    <div class="md:row-span-2">
+      <div>
+        <img src="{{page.featured_image.url}}" alt="{{page.featured_image.description}}" />
+      </div>
+      {% if page.button_url and page.button_text %}
+        <a href="{{page.button_url}}" class="w-full my-5 btn btn-outline">{{page.button_text}}</a>
+      {% endif %}
+    </div>
+    <div class="prose">
+      {{ page.body | markdownify }}
+    </div>
+    <div>
+      {% for item in page.event_media %}
+        <figure>
+          {% assign alt_desc = item.description | replace: '"', '' | replace: "'", '' %}
+          <img src="{{ item.url }}" alt="{{ alt_desc }}">
+          <figcaption class="event-media-desc">{{ item.description }}</figcaption>
+        </figure>
+      {% endfor %}
+    </div>
+  </div>
+</main>

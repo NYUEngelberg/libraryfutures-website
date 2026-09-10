@@ -1,0 +1,47 @@
+---
+layout: tailwind
+---
+
+<main id="main"  class="profile-page">
+  <!-- Layout 2 -->
+  <section class="grid lg:grid-cols-[33%_67%] gap-12 py-4 px-6 md:py-22 md:px-24 ">
+    <div class="column large-4 medium-12 small-12">
+      <div class="flex flex-col items-center text-center gap-4">
+        <img 
+          class="w-64 h-64 rounded-full object-cover"
+          src="{{ page.photo.url }}" alt="{{page.photo.description}}}}"
+        />
+        <h1 class="text-5xl font-semibold" >{{ page.display_name }}</h1>
+        <div class="profile__position">{{ page.title }}</div>
+
+        {% if page.button_url and page.button_text %}
+          <a class="btn btn-outline w-full" href="{{ page.button_url }}">{{ page.button_text }}</a>
+        {% endif %}
+        {% if page.email and page.email.size != 0 or page.twitter and page.twitter.size != 0 %}
+        <div class="social-buttons-container">
+          {% if page.email and page.email.size != 0 %}
+          <a class="social-buttons__email" href="mailto:{{page.email}}">{{page.email}}</a>
+          {% endif %}
+          {% if page.twitter and page.twitter.size != 0 %}
+          <a class="social-buttons__twitter" href="{{page.twitter}}">{{ page.twitter | split: "/" | last | prepend: '@'}}</a>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="prose !max-w-none">
+      {{page.long_description | markdownify }}
+    </div>
+  </section>
+
+  <section class="py-4 px-6 md:py-8 md:px-24">
+    <!-- card sections  -->
+    {% if page.featured_research and page.featured_research.size != 0 %}
+      {% include components/generic-card-layout.html 
+        cards=page.featured_research
+        cards_heading="Featured Work"
+        cards_type="lf_cards"
+      %}
+    {% endif %}
+  </section>
+</main>

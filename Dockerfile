@@ -5,3 +5,4 @@ RUN groupadd --gid 1000 node \
 
 COPY --from=node:22-slim /usr/local/bin /usr/local/bin
 COPY --from=node:22-slim /usr/local/lib/node_modules /usr/local/lib/node_modules
+WORKDIR /opt/app

@@ -1,0 +1,67 @@
+---
+layout: tailwind
+title: Library Futures Events
+extra_js:
+- /assets/js/events.js
+---
+
+{% assign page_data = site.data.contentful.lf.eventsPage | first %}
+
+<main class="">
+  <div class="py-4 px-6 md:px-24 md:py-22 grid md:grid-cols-2 gap-8 bg-gradient-to-br from-white via-[#faf9fb] to-white">
+    <div class="">
+      <h1 class="text-6xl font-semibold mb-2">{{page.title}}</h1>
+      <p class="prose !max-w-none">{{page_data.introduction}}</p>
+    </div>
+    <div class="">
+      <h3 class="text-2xl font-semibold mb-2" >Featured Event</h3>
+
+    {% assign event = page_data.featured_event %}
+      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-[#e0e0e0]"> 
+        <div class="">
+          {{ event.event_start | date: "%B %d, %Y" }}
+        </div>
+
+        {% if event.external_url and event.external_url.size != 0 %}
+          <a class="external-link" href="{{ event.external_url }}">
+            <h4 class="text-xl font-semibold mb-1">{{event.title}}</h4>
+          </a>
+        {% else %}
+          <a class="" href="{{ event.pretty_url | prepend: path | relative_url }}">
+            <h4 class="text-xl font-semibold mb-1">{{event.title}}</h4>
+          </a>
+        {% endif %}
+
+        <div class="prose mb-3">
+          {{ event.short_description | markdownify }}
+        </div>
+
+        {% if event.external_url and event.external_url.size != 0 %}
+          <a href="{{ event.external_url }}" class="uppercase">Event details →</a>
+        {% else %}
+          <a href="{{ event.pretty_url | prepend: 'events/' | relative_url }}" class="uppercase">Event details →</a>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+  <div class="py-4 px-6 md:px-24 md:py-8">
+    <h3 class="text-2xl font-semibold mt-6 mb-2">Upcoming Events</h3>
+    <div id="upcoming-events" class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      {% assign events_sort_asc = site.data.contentful.lf.event | sort: "event_start" |  slice: -3, 3 %}
+      {% for card in events_sort_asc %} 
+        {% include components/card-event.html card=card event_type="upcoming" default_image=page_data.default_event_image %} 
+      {% endfor %}
+    </div>
+
+    <h3 class="text-2xl font-semibold mt-6 mb-2">Past Events</h3>
+    <div id="past-events" class="grid md:grid-cols-4 gap-6">
+      {% assign events_sort_desc = site.data.contentful.lf.event | sort: "event_start" | reverse %}
+      {% for card in events_sort_desc %}
+        {% include components/card-event.html card=card event_type="past" default_image=page_data.default_event_image %}
+      {% endfor %}
+    </div>
+  </div>
+
+</main>
+
