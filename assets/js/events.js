@@ -17,4 +17,14 @@ window.addEventListener('load', e => {
     p.classList.add('my-14')
     document.getElementById("upcoming-events").appendChild(p)
   }
+
+  const pastEvents = document.getElementById("past-events").children
+  for (const event of pastEvents){
+    let eventDate = Date.parse(event.dataset.eventStart)
+    console.log(eventDate)
+    if (eventDate > today.getTime()){
+      event.classList.add('hidden')
+    }
+  }
+
 })
