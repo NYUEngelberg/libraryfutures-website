@@ -29,7 +29,7 @@ module Jekyll
     # - `name` is the key in `data` which determines the output filename
     # - `template` is the name of the template for generating the page
     # - `extension` is the extension for the generated file
-    def initialize(site, base, index_files, dir, data, name, template, extension, customTitle, customSeoImage, customSeoDescription)
+    def initialize(site, base, index_files, dir, data, name, template, extension, customTitle, customSeoImage, customSeoDescription, urlTarget)
       @site = site
       @base = base
 
@@ -58,6 +58,10 @@ module Jekyll
 
       if customSeoDescription
         self.data['description'] = data[customSeoDescription]
+      end
+
+      if urlTarget
+        self.data['redirect_to'] = data[urlTarget]
       end
 
       if self.data['title'] == '404'
@@ -96,6 +100,7 @@ module Jekyll
           customTitle = data_spec['customTitle']
           customSeoImage = data_spec['customSeoImage']
           customSeoDescription = data_spec['customSeoDescription']
+          urlTarget = data_spec['urlTarget']
 
           if site.layouts.key? template
             # records is the list of records defined in _data.yml
@@ -117,7 +122,7 @@ module Jekyll
 
             if records
               records.each do |record|
-                site.pages << DataPage.new(site, site.source, index_files_for_this_data, dir, record, name, template, extension, customTitle, customSeoImage, customSeoDescription)
+                site.pages << DataPage.new(site, site.source, index_files_for_this_data, dir, record, name, template, extension, customTitle, customSeoImage, customSeoDescription, urlTarget)
               end
             end
           else
