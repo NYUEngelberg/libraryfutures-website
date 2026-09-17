@@ -85,7 +85,8 @@ page_gen:
     dir: 'publications'
     customSeoImage: 'seo_image'
     customSeoDescription: 'seo_description'
-
-
-
-
+  - data: 'data.contentful.lf.simpleRedirect'
+    template: 'simple_redirect'
+    name: 'source'
+    dir: ''
+    urlTarget: 'destination'
