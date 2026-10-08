@@ -2,31 +2,28 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.4",
     "@tailwindcss/typography": "^0.5.19",
-    "@tailwindcss/vite": "^4.2.2",
     "autoprefixer": "^10.5.0",
     "cssnano": "^8.0.0",
     "daisyui": "^5.5.19",
     "postcss": "^8.5.14",
     "postcss-cli": "^11.0.1",
-    "tailwindcss": "^4.2.4",
-    "vite": "^8.0.11"
+    "tailwindcss": "^4.2.4"
   },
   "name": "app",
   "version": "1.0.0",
-  "description": "Testing out contentful and other stuff",
+  "description": "Dependencies for tailwind and postcss",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vite --host 0.0.0.0"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dirkcuys/lf-playground.git"
+    "url": "git+https://github.com/NYUEngelberg/libraryfutures-website.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dirkcuys/lf-playground/issues"
+    "url": "https://github.com/NYUEngelberg/libraryfutures-website/issues"
   },
-  "homepage": "https://github.com/dirkcuys/lf-playground#readme"
+  "homepage": "https://github.com/NYUEngelberg/libraryfutures-website/"
 }
